@@ -6,6 +6,10 @@
   --card: #ffffff;
 }
 
+html, body {
+  height: 100%;
+}
+
 /* RESET DE BASE */
 * {
   box-sizing: border-box;
@@ -236,6 +240,26 @@ body.show-header .topbar {
 }
 .page.active {
   display: block;
+}
+
+/* Make the home page hero truly full-bleed and full-height */
+#home.page {
+  max-width: 100%;
+  padding: 0; /* remove container padding so hero can reach edges */
+  margin: 0;
+}
+
+#home .hero-fullscreen {
+  width: 100%;
+  height: 100dvh; /* full viewport height */
+  min-height: 100vh;
+  border-radius: 0; /* no rounding for full-bleed */
+}
+
+/* ensure overlay sits above images and content below doesn't push hero */
+#home .hero-fullscreen .overlay {
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* ============================== */
