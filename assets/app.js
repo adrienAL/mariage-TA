@@ -246,6 +246,79 @@ if (document.getElementById('countdown')) {
   startCountdown();
 }
 
+// Simple carousel responsive (autoplay + controls + touch)
+function initCarousel() {
+  const carousel = document.querySelector('.carousel');
+  if (!carousel) return;
+  const track = carousel.querySelector('.carousel-track');
+  const slides = Array.from(carousel.querySelectorAll('.slide'));
+  const prev = carousel.querySelector('.carousel-btn.prev');
+  const next = carousel.querySelector('.carousel-btn.next');
+  const dotsContainer = carousel.querySelector('.carousel-dots');
+  let index = 0;
+  let width = carousel.clientWidth;
+  let timer = null;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(btn);
+  });
+
+  const dots = Array.from(dotsContainer.children);
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[index]) dots[index].classList.add('active');
+  }
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    update();
+    resetAuto();
+  }
+
+  function nextSlide() { goTo(index + 1); }
+  function prevSlide() { goTo(index - 1); }
+
+  if (next) next.addEventListener('click', nextSlide);
+  if (prev) prev.addEventListener('click', prevSlide);
+
+  // autoplay
+  function startAuto() {
+    timer = setInterval(nextSlide, 5000);
+  }
+  function resetAuto() {
+    if (timer) clearInterval(timer);
+    startAuto();
+  }
+
+  // pause on hover/focus
+  carousel.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+  carousel.addEventListener('mouseleave', startAuto);
+
+  // touch support
+  let startX = 0;
+  carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; if (timer) clearInterval(timer); });
+  carousel.addEventListener('touchend', (e) => {
+    const dx = (e.changedTouches[0].clientX - startX);
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) nextSlide(); else prevSlide();
+    }
+    resetAuto();
+  });
+
+  // init
+  update();
+  startAuto();
+  // responsive resize
+  window.addEventListener('resize', () => { width = carousel.clientWidth; });
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
+
 /*
 // Musique auto
 const music = document.getElementById('bg-music');

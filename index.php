@@ -71,6 +71,37 @@ session_start();
       <!-- SECTION ACCUEIL -->
       <section id="home" class="page active">
         <div class="hero-fullscreen">
+          <div class="carousel" aria-hidden="false">
+            <div class="carousel-track">
+              <div class="slide">
+                <picture>
+                  <source media="(max-width:768px)" srcset="assets/photo_home_mobile.jpg">
+                  <img src="assets/photo_home.jpg" alt="Domaine de Montfriol">
+                </picture>
+              </div>
+              <div class="slide">
+                <picture>
+                  <source media="(max-width:768px)" srcset="assets/montfriol-allee-nuit.jpg">
+                  <img src="assets/montfriol-allee-nuit.jpg" alt="Allée du domaine">
+                </picture>
+              </div>
+              <div class="slide">
+                <picture>
+                  <source media="(max-width:768px)" srcset="assets/montfriol-domain-global.jpg">
+                  <img src="assets/montfriol-domain-global.jpg" alt="Vue du domaine">
+                </picture>
+              </div>
+              <div class="slide">
+                <picture>
+                  <source media="(max-width:768px)" srcset="assets/montfriol-terrasse-jour.jpg">
+                  <img src="assets/montfriol-terrasse-jour.jpg" alt="Terrasse">
+                </picture>
+              </div>
+            </div>
+            <button class="carousel-btn prev" aria-label="Précédent">‹</button>
+            <button class="carousel-btn next" aria-label="Suivant">›</button>
+            <div class="carousel-dots" aria-hidden="true"></div>
+          </div>
           <div class="overlay">
             <h1 class="hero-names">
               <span class="hn-first">Tiphaine</span>
