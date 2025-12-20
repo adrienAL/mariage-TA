@@ -1,0 +1,319 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mariage Tiphaine & Adrien – 24 octobre 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<?php if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true): ?>
+  <!-- ÉCRAN MOT DE PASSE -->
+  <div id="password-screen">
+    <div class="pwd-card">
+      <h1>Mariage de Tiphaine & Adrien</h1>
+      <p>Entrez le mot de passe pour accéder au site ✨</p>
+      <input type="password" id="pwd-input" placeholder="Mot de passe">
+      <button id="pwd-btn">Entrer</button>
+      <p id="pwd-error" class="error"></p>
+    </div>
+  </div>
+
+<?php else: ?>
+
+  <!-- Effet de fondu progressif du site au chargement -->
+  <style>
+    body.loading { overflow: hidden; }
+    #app { opacity: 0; transition: opacity .6s ease; }
+    body.loaded #app { opacity: 1; }
+  </style>
+
+  <script>
+    document.body.classList.add('loading');
+    window.addEventListener('load', () => {
+      document.body.classList.remove('loading');
+      document.body.classList.add('loaded');
+    });
+  </script>
+
+  <!-- APPLICATION SPA -->
+  <div id="app">
+    <!-- Musique persistante -->
+    <!--<audio id="bg-music" src="assets/music.mp3" autoplay loop></audio>-->
+
+    <!-- BARRE DE NAVIGATION FIXE -->
+    <header class="topbar">
+        <div class="brand">Tiphaine & Adrien</div>
+
+    
+      <!-- Bouton burger pour mobile -->
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    
+      <nav class="tabs" id="main-nav">
+        <button class="tab-btn" data-tab="home">Accueil</button>
+        <button class="tab-btn" data-tab="rsvp">Je confirme ma présence</button>
+        <button class="tab-btn" data-tab="logements">Logements</button>
+        <button class="tab-btn" data-tab="contact">Nous contacter</button>
+      </nav>
+    </header>
+
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="content">
+
+      <!-- SECTION ACCUEIL -->
+      <section id="home" class="page active">
+        <div class="hero-fullscreen">
+          <div class="overlay">
+            <h1 class="hero-names">
+              <span class="hn-first">Tiphaine</span>
+              <span class="hn-et">&</span>
+              <span class="hn-last">Adrien</span>
+            </h1>
+            <div class="date-container">
+              <div class="wedding-date">24 octobre 2026</div>
+              <div class="wedding-location">Domaine de Montfriol, Chambost-Allières</div>
+            </div>
+
+            <div id="countdown" class="countdown">
+              <div><span id="cd-days">0</span><small>jours</small></div>
+              <div><span id="cd-hours">0</span><small>heures</small></div>
+              <div><span id="cd-mins">0</span><small>minutes</small></div>
+              <div><span id="cd-secs">0</span><small>secondes</small></div>
+            </div>
+
+            <!--<a href="#deroule" class="scroll-down">↓</a>-->
+          </div>
+        </div>
+        
+        <!-- INTRO SOUS LE HERO -->
+        <section class="intro">
+          <p>
+            Nous avons le plaisir de vous inviter à célébrer notre mariage au 
+            <br /><strong>Domaine de Montfriol</strong><br /> 
+            Vous trouverez ici toutes les informations pratiques ainsi que le formulaire pour confirmer votre présence.  
+            Nous avons hâte de partager ce moment si spécial avec vous.
+          </p>
+        </section>
+
+        <!-- Déroulé -->
+        <div id="deroule" class="scroll-area">
+          <h2>Le déroulé de la journée</h2>
+          <ul class="timeline">
+            <li>
+              <h3>Rendez-vous pour la cérémonie laïque</h3>
+              <p>
+                La cérémonie laïque se déroulera au
+                <strong>Domaine de Montfriol</strong> à 
+                <strong>16h00</strong>.
+              </p>
+              <p>
+                Elle sera animée par <strong>Marceau</strong>, notre maître de cérémonie.
+                Nous vous invitons à arriver quelques minutes en avance pour vous installer tranquillement.
+              </p>
+            </li>
+            <li>
+              <h3>Vin d'honneur</h3>
+              <p>Au domaine de Montfriol</p>
+            </li>
+            <li>
+              <h3>Dîner</h3>
+              <p>Dans la salle de réception</p>
+            </li>
+            <li>
+              <h3>Galette saucisses & jeux</h3>
+              <p>Pour finir la soirée en douceur 🌙</p>
+            </li>
+          </ul>
+
+        <h2>Infos sur le domaine</h2>
+        <p>
+          Le mariage aura lieu au <strong>Domaine de Montfriol</strong>,
+          à Chambost-Allières, dans le Beaujolais. Le domaine dispose d’un grand
+          espace extérieur pour le vin d’honneur, d’une belle salle de réception
+          et de plusieurs coins chaleureux pour profiter de la soirée. Pensez à
+          prévoir un petit gilet pour la fin de journée 🫶
+        </p>
+        
+        <div class="domain-gallery">
+          <img src="assets/montfriol-allee-nuit.jpg" alt="">
+          <img src="assets/montfriol-back.jpg" alt="">
+          <img src="assets/montfriol-bar-a-biere.jpg" alt="">
+          <img src="assets/montfriol-cave.jpg" alt="">
+          <img src="assets/montfriol-domain-global.jpg" alt="">
+          <img src="assets/montfriol-escalier.jpg" alt="">
+          <img src="assets/montfriol-terrasse-avant.jpg" alt="">
+          <img src="assets/montfriol-terrasse-jour.jpg" alt="">
+        </div>
+
+        </div>
+      </section>
+
+        <!-- SECTION LOGEMENTS -->
+        <section id="logements" class="page">
+        <h2>Logements</h2>
+        
+        <div class="lodging-group">
+          <h3>Les témoins, demoiselles d'honneur et maître de cérémonie</h3>
+          <p>
+            Le gîte du domaine sera réservé pour eux et leurs +1.
+          </p>
+        </div>
+        
+        <div class="lodging-group">
+            <h3>Les Shaduns</h3>
+            <p>
+                  Les dortoirs du gîte du Domaine de la Vielle, juste en face du domaine,
+              sont réservés pour vous : 
+              <strong>
+                1000&nbsp;€ à diviser par le nombre de personnes pour le week-end, 
+                venez nombreux<sup>*</sup>&nbsp;😜
+              </strong>.
+            </p>
+            <p>
+            Merci d’amener votre duvet.
+            </p>
+            <p class="note-dortoir">
+              <sup>*</sup> Dans la limite des stocks disponibles (max. 40&nbsp;personnes).
+            </p>
+            <button type="button" class="btn-reserver open-shaduns">
+              Réserver ma place au dortoir
+            </button>
+        </div>
+        
+        <div class="lodging-group">
+          <h3>Logements à proximité</h3>
+          <p>
+            À venir.
+          </p>
+        </div>
+        </section>
+      
+        <!-- SECTION SHADUNS (page interne) -->
+        <section id="shaduns" class="page">
+          <h2>Réservation du dortoir – Les Shaduns</h2>
+          <p>
+            Les dortoirs du gîte du Domaine de la Vielle (en face du domaine) sont
+            réservés pour les Shaduns : 40&nbsp;€/personne pour le week-end.
+            Merci d’amener votre duvet.
+          </p>
+        
+          <form id="shaduns-form">
+            <div class="form-row">
+              <label>Prénom (contact principal)</label>
+              <input type="text" name="prenom_contact" required>
+            </div>
+            <div class="form-row">
+              <label>Nom (contact principal)</label>
+              <input type="text" name="nom_contact" required>
+            </div>
+        
+            <div class="form-row">
+              <label>Nombre de personnes (vous inclus)</label>
+              <input type="number" name="nb_personnes" id="shaduns-nb" min="1" value="1" required>
+            </div>
+        
+            <div id="shaduns-extra-guests"></div>
+        
+            <button type="submit">Envoyer ma réservation</button>
+            <p id="shaduns-status"></p>
+          </form>
+        </section>
+
+
+      <!-- SECTION RSVP -->
+      <section id="rsvp" class="page">
+        <h2>Je confirme ma présence</h2>
+        <p class="alert">Ce mariage est sans enfant 💛 Merci de votre compréhension.</p>
+
+        <form id="rsvp-form">
+          <div class="form-row">
+            <label>Prénom</label>
+            <input type="text" name="prenom" required>
+          </div>
+          <div class="form-row">
+            <label>Nom</label>
+            <input type="text" name="nom" required>
+          </div>
+        
+          <div class="form-row">
+            <label>Présence</label>
+            <select name="presence" id="rsvp-presence" required>
+              <option value="oui">Oui, je serai là 🎉</option>
+              <option value="non">Non, désolé</option>
+            </select>
+          </div>
+        
+          <!-- Tout ce bloc sera caché si présence = non -->
+          <div id="rsvp-extra-fields">
+            <div class="form-row">
+              <label>Nombre de personnes (adultes uniquement)</label>
+              <input type="number" name="nb_personnes" min="1" value="1">
+            </div>
+        
+            <!-- Champs prénoms supplémentaires -->
+            <div id="extra-guests"></div>
+        
+            <div class="form-row">
+              <label>Présent au brunch ?</label>
+              <select name="brunch">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+              </select>
+            </div>
+        
+            <div class="form-row">
+              <label>Message / régime particulier</label>
+              <textarea name="message" rows="4" placeholder="Sans gluten, végétarien, allergies..."></textarea>
+            </div>
+          </div>
+        
+          <button type="submit">Envoyer ma réponse</button>
+          <p id="rsvp-status" hidden="true"></p>
+        </form>
+      </section>
+    </main>
+  </div>
+<?php endif; ?>
+
+<!-- Lightbox pour les photos du domaine -->
+<div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Fermer la photo">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- Popup Rickroll interne -->
+<div id="rickroll-overlay" class="popup-overlay">
+  <div class="popup-box" style="max-width:420px; width:90%; text-align:center;">
+    <button class="popup-close" aria-label="Fermer">×</button>
+
+    <p style="margin-bottom:1rem; font-size:1rem;">
+      Tu voulais vraiment nous contacter ?
+    </p>
+
+    <video id="rickroll-video" controls style="width:100%; border-radius:0.6rem;">
+      <source src="assets/RickRoll.mp4" type="video/mp4">
+      Ton navigateur est NULLLLL !
+    </video>
+  </div>
+</div>
+
+
+<!-- Popup globale -->
+<div id="global-popup" class="popup-overlay" aria-hidden="true">
+  <div class="popup-box">
+    <button class="popup-close" aria-label="Fermer la notification">&times;</button>
+    <p id="popup-message">Message</p>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
