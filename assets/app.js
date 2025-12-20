@@ -262,7 +262,7 @@ function initCarousel() {
   const next = carousel.querySelector('.carousel-btn.next');
   const dotsContainer = carousel.querySelector('.carousel-dots');
   let index = 0;
-  let width = carousel.clientWidth;
+  let slideWidth = carousel.getBoundingClientRect().width;
   let timer = null;
 
   // build dots
@@ -275,7 +275,8 @@ function initCarousel() {
   const dots = Array.from(dotsContainer.children);
 
   function update() {
-    track.style.transform = `translateX(-${index * 100}%)`;
+    // use pixel translation to avoid percent rounding issues on mobile
+    track.style.transform = `translateX(${-(index * slideWidth)}px)`;
     dots.forEach(d => d.classList.remove('active'));
     if (dots[index]) dots[index].classList.add('active');
   }
@@ -305,22 +306,30 @@ function initCarousel() {
   carousel.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
   carousel.addEventListener('mouseleave', startAuto);
 
-  // touch support
+  // touch support (with simple threshold)
   let startX = 0;
-  carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; if (timer) clearInterval(timer); });
+  carousel.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    if (timer) clearInterval(timer);
+  }, {passive: true});
+
   carousel.addEventListener('touchend', (e) => {
     const dx = (e.changedTouches[0].clientX - startX);
-    if (Math.abs(dx) > 40) {
+    if (Math.abs(dx) > (slideWidth * 0.12)) { // 12% of width threshold
       if (dx < 0) nextSlide(); else prevSlide();
     }
     resetAuto();
-  });
+  }, {passive: true});
 
   // init
   update();
   startAuto();
   // responsive resize
-  window.addEventListener('resize', () => { width = carousel.clientWidth; });
+  window.addEventListener('resize', () => {
+    // recompute slide width and reposition to current index
+    slideWidth = carousel.getBoundingClientRect().width;
+    update();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initCarousel);
