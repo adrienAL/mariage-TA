@@ -73,30 +73,45 @@ session_start();
         <div class="hero-fullscreen">
           <div class="carousel" aria-hidden="false">
             <div class="carousel-track">
+              <?php
+                // Dossiers d'images (attention à l'orthographe exacte dans assets)
+                $desktopDir = 'assets/carrousel-horizontal';
+                $mobileDir = 'assets/carroussel-vertical';
+
+                $filterImages = function($files) {
+                  return array_values(array_filter($files, function($f) {
+                    return preg_match('/\.(jpe?g|png|gif|webp)$/i', $f);
+                  }));
+                };
+
+                $desktopFiles = is_dir($desktopDir) ? $filterImages(scandir($desktopDir)) : [];
+                $mobileFiles = is_dir($mobileDir) ? $filterImages(scandir($mobileDir)) : [];
+
+                // Si pas d'images desktop, fallback sur quelques images existantes
+                if (empty($desktopFiles)) {
+                  $desktopFiles = ['photo_home.jpg','montfriol-domain-global.jpg','montfriol-allee-nuit.jpg'];
+                }
+
+                foreach ($desktopFiles as $i => $dfile) {
+                  $dpath = $desktopDir . '/' . $dfile;
+                  $mpath = isset($mobileFiles[$i]) ? ($mobileDir . '/' . $mobileFiles[$i]) : null;
+                  // Si le fichier desktop n'existe pas (fallback to root assets)
+                  if (!file_exists($dpath)) {
+                    $dpath = 'assets/' . $dfile;
+                  }
+                  if ($mpath && !file_exists($mpath)) {
+                    $mpath = null;
+                  }
+              ?>
               <div class="slide">
                 <picture>
-                  <source media="(max-width:768px)" srcset="assets/photo_home_mobile.jpg">
-                  <img src="assets/photo_home.jpg" alt="Domaine de Montfriol">
+                  <?php if ($mpath): ?>
+                    <source media="(max-width:768px)" srcset="<?php echo htmlspecialchars($mpath); ?>">
+                  <?php endif; ?>
+                  <img src="<?php echo htmlspecialchars($dpath); ?>" alt="">
                 </picture>
               </div>
-              <div class="slide">
-                <picture>
-                  <source media="(max-width:768px)" srcset="assets/montfriol-allee-nuit.jpg">
-                  <img src="assets/montfriol-allee-nuit.jpg" alt="Allée du domaine">
-                </picture>
-              </div>
-              <div class="slide">
-                <picture>
-                  <source media="(max-width:768px)" srcset="assets/montfriol-domain-global.jpg">
-                  <img src="assets/montfriol-domain-global.jpg" alt="Vue du domaine">
-                </picture>
-              </div>
-              <div class="slide">
-                <picture>
-                  <source media="(max-width:768px)" srcset="assets/montfriol-terrasse-jour.jpg">
-                  <img src="assets/montfriol-terrasse-jour.jpg" alt="Terrasse">
-                </picture>
-              </div>
+              <?php } /* endforeach desktopFiles */ ?>
             </div>
             <button class="carousel-btn prev" aria-label="Précédent">‹</button>
             <button class="carousel-btn next" aria-label="Suivant">›</button>
