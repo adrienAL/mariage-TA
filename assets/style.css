@@ -20,7 +20,12 @@ body {
   color: var(--text);
   line-height: 1.5;
   overflow-x: hidden;
-  padding-top: 72px; /* espace pour la topbar fixe, un peu plus haut */
+  padding-top: 0; /* header hidden on landing; added back when scrolled */
+}
+
+/* when header should be visible (after scroll) we add padding to avoid overlap */
+body.show-header {
+  padding-top: 72px;
 }
 
 /* Écran mot de passe */
@@ -137,7 +142,15 @@ body {
   right: 0;
   /*height: 64px;*/
   z-index: 2000;
+  /* hidden by default: slide up */
+  transform: translateY(-120%);
+  transition: transform 0.35s ease, background 0.25s ease;
   border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* show header when body has the class */
+body.show-header .topbar {
+  transform: translateY(0);
 }
 
 .brand {
@@ -231,8 +244,8 @@ body {
 .hero-fullscreen {
   position: relative;
   width: 100%;
-  height: calc(100dvh - 72px); /* plein écran sous la topbar fixe */
-  min-height: calc(100vh - 72px);
+  height: 100dvh; /* plein écran (header overlayed) */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

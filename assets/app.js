@@ -141,6 +141,12 @@ if (brand) {
   brand.addEventListener('click', () => {
     showPage('home');
     window.scrollTo({top: 0, behavior: 'smooth'});
+    // try to hide header after returning to top
+    setTimeout(() => {
+      if (window.scrollY === 0) {
+        document.body.classList.remove('show-header');
+      }
+    }, 700);
   });
 }
 
@@ -318,6 +324,28 @@ function initCarousel() {
 }
 
 document.addEventListener('DOMContentLoaded', initCarousel);
+
+// Header reveal on scroll: show header when user scrolls down
+function initHeaderReveal() {
+  // initial state
+  document.body.classList.add('landing');
+
+  function onScroll() {
+    if (window.scrollY > 20) {
+      document.body.classList.add('show-header');
+      document.body.classList.remove('landing');
+    } else {
+      document.body.classList.remove('show-header');
+      document.body.classList.add('landing');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, {passive: true});
+  // call once to set initial state
+  onScroll();
+}
+
+document.addEventListener('DOMContentLoaded', initHeaderReveal);
 
 /*
 // Musique auto
