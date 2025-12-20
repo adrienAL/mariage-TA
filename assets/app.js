@@ -52,6 +52,24 @@ function showPage(target) {
   }
 }
 
+// Ensure header visibility for non-home pages
+const originalShowPage = showPage;
+window.showPage = function(target) {
+  originalShowPage(target);
+  // if navigating to a non-home page, ensure header is visible
+  if (target !== 'home') {
+    document.body.classList.add('show-header');
+  } else {
+    // returning to home: hide header when at the very top
+    setTimeout(() => {
+      if (window.scrollY === 0) document.body.classList.remove('show-header');
+    }, 300);
+  }
+};
+
+// replace local reference so other calls to showPage() use the wrapped version
+showPage = window.showPage;
+
 tabs.forEach(btn => {
   btn.addEventListener('click', () => {
     const target = btn.getAttribute('data-tab');
@@ -188,6 +206,10 @@ function showHomeWithPopup(message) {
 
   window.scrollTo({top: 0, behavior: 'smooth'});
   showPopup(message);
+  // ensure header hides again when returning to home at top
+  setTimeout(() => {
+    if (window.scrollY === 0) document.body.classList.remove('show-header');
+  }, 500);
 }
 
 // Afficher une popup en fonction des paramètres d'URL (ex: retour shaduns)
@@ -336,7 +358,17 @@ document.addEventListener('DOMContentLoaded', initCarousel);
 
 // Header reveal on scroll: show header when user scrolls down
 function initHeaderReveal() {
-  // initial state
+  // Only use landing behaviour when the home page is active
+  const home = document.getElementById('home');
+  const isHomeActive = home && home.classList.contains('active');
+
+  if (!isHomeActive) {
+    // On other pages header must always be visible
+    document.body.classList.add('show-header');
+    return;
+  }
+
+  // initial state for home
   document.body.classList.add('landing');
 
   function onScroll() {
