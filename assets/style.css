@@ -33,7 +33,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('../assets/home-password.jpeg') center/cover no-repeat;
+  background: url('../assets/home-password/desktop.jpeg') center/cover no-repeat;
 }
 
 .pwd-card {
@@ -826,7 +826,8 @@ body.show-header .page:not(#home) {
     flex-wrap: wrap;
   }
 
-  .hero-fullscreen {
-    background-image: url('../assets/photo_home_mobile.jpg'); /* version mobile */
+  /* Image de fond mobile pour password-screen */
+  #password-screen {
+    background: url('../assets/home-password/mobile.jpeg') center/cover no-repeat;
   }
 }
