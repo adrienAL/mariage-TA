@@ -392,6 +392,21 @@ function initHeaderReveal() {
 
 document.addEventListener('DOMContentLoaded', initHeaderReveal);
 
+// Scroll-down button behavior (from hero to next section)
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('hero-scroll');
+  if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById('deroule') || document.getElementById('content');
+    if (!target) return;
+    // scroll so hero is out of view; offset if header visible
+    const headerOffset = document.body.classList.contains('show-header') ? document.querySelector('.topbar')?.offsetHeight || 0 : 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
 /*
 // Musique auto
 const music = document.getElementById('bg-music');

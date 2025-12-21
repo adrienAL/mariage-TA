@@ -135,7 +135,7 @@ session_start();
               <div><span id="cd-secs">0</span><small>secondes</small></div>
             </div>
 
-            <!--<a href="#deroule" class="scroll-down">↓</a>-->
+            <button id="hero-scroll" class="scroll-down" aria-label="Descendre">↓</button>
           </div>
         </div>
         

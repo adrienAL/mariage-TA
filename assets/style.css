@@ -38,7 +38,7 @@ body.show-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('../assets/accueil-password.jpeg') center/cover no-repeat;
+  background: url('../assets/home-password.jpeg') center/cover no-repeat;
 }
 
 .pwd-card {
@@ -480,6 +480,24 @@ body.show-header .topbar {
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
+}
+
+/* style for the hero scroll button when it's a <button> */
+.scroll-down {
+  border: none;
+  background: rgba(255,255,255,0.08);
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* slightly more visible on hover */
+.scroll-down:hover {
+  background: rgba(255,255,255,0.18);
 }
 
 /* ============================== */
