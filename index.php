@@ -179,35 +179,36 @@ session_start();
             </li>
           </ul>
 
-        <h2>Infos sur le domaine</h2>
-        <p>
-          Le mariage aura lieu au <strong>Domaine de Montfriol</strong>,
-          à Chambost-Allières, dans le Beaujolais. Le domaine dispose d’un grand
-          espace extérieur pour le vin d’honneur, d’une belle salle de réception
-          et de plusieurs coins chaleureux pour profiter de la soirée. Pensez à
-          prévoir un petit gilet pour la fin de journée 🫶
-        </p>
-        
-        <div class="domain-gallery">
-          <img src="assets/montfriol-allee-nuit.jpg" alt="">
-          <img src="assets/montfriol-back.jpg" alt="">
-          <!--<img src="assets/montfriol-bar-a-biere.jpg" alt="">
-          <img src="assets/montfriol-domain-global.jpg" alt="">-->
-          <img src="assets/montfriol-cave.jpg" alt="">
-          <img src="assets/montfriol-escalier.jpg" alt="">
-          <img src="assets/montfriol-terrasse-avant.jpg" alt="">
-          <img src="assets/montfriol-terrasse-jour.jpg" alt="">
-        </div>
+          <h2>Infos sur le domaine</h2>
+          <p>
+            Le mariage aura lieu au <strong>Domaine de Montfriol</strong>,
+            à Chambost-Allières, dans le Beaujolais. Le domaine dispose d’un grand
+            espace extérieur pour le vin d’honneur, d’une belle salle de réception
+            et de plusieurs coins chaleureux pour profiter de la soirée. Pensez à
+            prévoir un petit gilet pour la fin de journée 🫶
+          </p>
+          
+          <div class="domain-gallery">
+            <img src="assets/montfriol-allee-nuit.jpg" alt="">
+            <img src="assets/montfriol-back.jpg" alt="">
+            <!--<img src="assets/montfriol-bar-a-biere.jpg" alt="">
+            <img src="assets/montfriol-domain-global.jpg" alt="">-->
+            <img src="assets/montfriol-cave.jpg" alt="">
+            <img src="assets/montfriol-escalier.jpg" alt="">
+            <img src="assets/montfriol-terrasse-avant.jpg" alt="">
+            <img src="assets/montfriol-terrasse-jour.jpg" alt="">
+          </div>
 
         </div>
+        <section id="egg-zone" class="egg-zone" aria-hidden="true">
+          <div class="egg-inner">
+            <h3>Ok voici un peux plus de mignonnerie</h3>
+            <img src="assets/easter-egg/egg-chats.jpg" alt="Easter egg chats" loading="lazy">
+          </div>
+        </section>
       </section>
 
-      <section id="egg-zone" class="egg-zone" aria-hidden="true">
-        <div class="egg-inner">
-          <h3>Ok voici un peux plus de mignonnerie</h3>
-          <img src="assets/easter-egg/egg-chats.jpg" alt="Easter egg chats" loading="lazy">
-        </div>
-      </section>
+
 
 
       <!-- SECTION LOGEMENTS -->
