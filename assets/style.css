@@ -576,28 +576,6 @@ body.show-header .page:not(#home) {
   margin-top: .7rem;
 }
 
-/* Bouton appeler (caché par défaut) */
-.btn-call {
-  display: none;
-  background: var(--green);
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.6rem;
-  font-size: 0.9rem;
-}
-
-.btn-call:hover {
-  background: var(--green-dark);
-}
-
-/* Sur mobile : afficher "Appeler" */
-@media (max-width: 768px) {
-  .btn-call {
-    display: inline-block;
-  }
-}
-
 
 
 /* ============================== */

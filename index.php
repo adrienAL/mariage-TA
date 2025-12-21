@@ -253,7 +253,6 @@ session_start();
               <a class="btn-reserver" href="https://www.lagrangefleurie-chamelet.fr" target="_blank" rel="noopener">
                 Voir le site
               </a>
-              <a class="btn-call" href="tel:+33680120323">Appeler</a>
             </div>
           </div>
 
@@ -277,7 +276,6 @@ session_start();
               <a class="btn-reserver" href="https://www.lamuzetière.fr" target="_blank" rel="noopener">
                 Voir le site
               </a>
-              <a class="btn-call" href="tel:+33680120323">Appeler</a>
             </div>
           </div>
 
@@ -294,9 +292,6 @@ session_start();
             <p><strong>Tarif mariage :</strong> 35 € / personne / nuit (210 € la nuit pour 6 personnes)</p>
             <p><strong>Réservation :</strong> contacter directement le propriétaire</p>
 
-            <div class="lodging-actions">
-              <a class="btn-call" href="tel:+33680120323">Appeler</a>
-            </div>
           </div>
 
           <div class="lodging-group">
@@ -308,9 +303,6 @@ session_start();
             <p><strong>Réservation :</strong> par téléphone</p>
             <p><strong>Contact :</strong> <a href="tel:+33637669695">06 37 66 96 95</a></p>
 
-            <div class="lodging-actions">
-              <a class="btn-call" href="tel:+33637669695">Appeler</a>
-            </div>
           </div>
 
           <div class="lodging-group">
@@ -325,10 +317,6 @@ session_start();
             <p><strong>Équipements :</strong> petit coin pour déjeuner</p>
             <p><strong>Réservation :</strong> par téléphone</p>
             <p><strong>Contact :</strong> <a href="tel:+33783981929">07 83 98 19 29</a></p>
-
-            <div class="lodging-actions">
-              <a class="btn-call" href="tel:+33783981929">Appeler</a>
-            </div>
           </div>
 
           <div class="lodging-group">
@@ -336,10 +324,6 @@ session_start();
             <p><strong>Type :</strong> chambres d’hôtes</p>
             <p><strong>Réservation :</strong> les invités doivent appeler directement</p>
             <p><strong>Contact :</strong> <a href="tel:+33683326921">06 83 32 69 21</a></p>
-
-            <div class="lodging-actions">
-              <a class="btn-call" href="tel:+33683326921">Appeler</a>
-            </div>
           </div>
 
         </section>
