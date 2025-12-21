@@ -139,10 +139,7 @@ body {
 .easter-egg-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: transparent;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -155,11 +152,13 @@ body {
 }
 
 .easter-egg-overlay img {
-  max-width: 11.25vw;
-  max-height: 11.25vh;
+  position: absolute;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
   object-fit: cover;
+  transform: translate(-50%, -50%);
 }
 
 

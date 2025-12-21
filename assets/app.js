@@ -693,7 +693,7 @@ const easterEggImg = document.getElementById('easter-egg-img');
 
 if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   easterEggTriggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
+    trigger.addEventListener('click', (e) => {
       const eggType = trigger.getAttribute('data-egg');
       let imgSrc = '';
       
@@ -704,6 +704,10 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
       }
       
       if (imgSrc) {
+        // Positionner l'image à l'endroit du clic
+        easterEggImg.style.left = e.clientX + 'px';
+        easterEggImg.style.top = e.clientY + 'px';
+        
         easterEggImg.src = imgSrc;
         easterEggPopup.classList.add('visible');
         
