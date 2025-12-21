@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const headerOffset = document.body.classList.contains('show-header') ? document.querySelector('.topbar')?.offsetHeight || 0 : 0;
     const targetTop = target.getBoundingClientRect().top + window.scrollY;
-    const offsetAboveIntro = 20; // px above the intro element
+    const offsetAboveIntro = 15; // px above the intro element
     const finalY = Math.max(0, targetTop - headerOffset - offsetAboveIntro);
 
     // animate with a comfortable duration
