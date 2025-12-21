@@ -416,15 +416,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btn.addEventListener('click', (e) => {
     e.preventDefault();
-    // Prefer the .intro element; fall back to #deroule or #content
-    const intro = document.querySelector('.intro');
-    const target = intro || document.getElementById('deroule') || document.getElementById('content');
-    if (!target) return;
-
-    const headerOffset = document.body.classList.contains('show-header') ? document.querySelector('.topbar')?.offsetHeight || 0 : 0;
-    const targetTop = target.getBoundingClientRect().top + window.scrollY;
-    const offsetAboveIntro = 20; // px above the intro element
-    const finalY = Math.max(0, targetTop - headerOffset - offsetAboveIntro);
+    
+    // Le hero fait 100vh, on veut scroller exactement de cette hauteur
+    // moins la hauteur de la topbar pour que le bas du hero soit caché par la topbar
+    const hero = document.querySelector('.hero-fullscreen');
+    if (!hero) return;
+    
+    // La topbar va apparaître au scroll, récupérer sa hauteur
+    const topbar = document.querySelector('.topbar');
+    const topbarHeight = topbar?.offsetHeight || 64; // fallback à 64px si non trouvée
+    
+    // Scroller jusqu'à la hauteur du hero moins la hauteur de la topbar
+    // Cela place le bas du hero exactement sous la topbar
+    const heroHeight = hero.offsetHeight;
+    const finalY = heroHeight - topbarHeight;
 
     // animate with a comfortable duration
     smoothScrollTo(finalY, 700);
