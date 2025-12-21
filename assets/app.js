@@ -51,24 +51,26 @@ function showPage(target) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
+// showPage now also toggles header visibility: header is visible on all pages except
+// the home landing state (hidden until user scrolls)
+function showPage(target) {
+  pages.forEach(p => p.classList.remove('active'));
+  const page = document.getElementById(target);
+  if (page) {
+    page.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-// Ensure header visibility for non-home pages
-const originalShowPage = showPage;
-window.showPage = function(target) {
-  originalShowPage(target);
-  // if navigating to a non-home page, ensure header is visible
   if (target !== 'home') {
+    // ensure header visible on any non-home page
     document.body.classList.add('show-header');
   } else {
-    // returning to home: hide header when at the very top
+    // returning to home: hide header again if we're at the top
     setTimeout(() => {
       if (window.scrollY === 0) document.body.classList.remove('show-header');
     }, 300);
   }
-};
-
-// replace local reference so other calls to showPage() use the wrapped version
-showPage = window.showPage;
+}
 
 tabs.forEach(btn => {
   btn.addEventListener('click', () => {
