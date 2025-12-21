@@ -4,6 +4,7 @@
   --green-dark: #4f6a54;
   --text: #2d2d2d;
   --card: #ffffff;
+  --topbar-height: 72px; /* used to offset fixed header when shown */
 }
 
 html, body {
@@ -150,6 +151,11 @@ body {
 /* show header when body has the class */
 body.show-header .topbar {
   transform: translateY(0);
+}
+
+/* when header is shown, push page content down so it isn't hidden */
+body.show-header {
+  padding-top: var(--topbar-height);
 }
 
 .brand {
@@ -435,6 +441,8 @@ body.show-header .topbar {
   font-size: 1.15rem;
   line-height: 1.6;
   color: #3c3c3c;
+  /* ensure scrolling positions land below the fixed header */
+  scroll-margin-top: calc(var(--topbar-height) + 12px);
 }
 
 .intro strong {
