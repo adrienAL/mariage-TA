@@ -125,6 +125,43 @@ body {
   border-radius: .6rem;
 }
 
+/* ============================== */
+/*  EASTER EGG                    */
+/* ============================== */
+.easter-egg-trigger {
+  transition: opacity 0.2s ease;
+}
+
+.easter-egg-trigger:hover {
+  opacity: 0.8;
+}
+
+.easter-egg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 3500;
+}
+
+.easter-egg-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.easter-egg-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  object-fit: contain;
+}
+
 
 /* ============================== */
 /*  HEADER FIXE                   */

@@ -684,3 +684,35 @@ if (lightbox && lightboxImg && galleryImages.length > 0) {
   });
 }
 
+// ============================
+// EASTER EGG - Tiphaine & Adrien
+// ============================
+const easterEggTriggers = document.querySelectorAll('.easter-egg-trigger');
+const easterEggPopup = document.getElementById('easter-egg-popup');
+const easterEggImg = document.getElementById('easter-egg-img');
+
+if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
+  easterEggTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const eggType = trigger.getAttribute('data-egg');
+      let imgSrc = '';
+      
+      if (eggType === 'tiphaine') {
+        imgSrc = 'assets/easter-egg/egg-tiphaine.jpeg';
+      } else if (eggType === 'adrien') {
+        imgSrc = 'assets/easter-egg/egg-adrien.jpeg';
+      }
+      
+      if (imgSrc) {
+        easterEggImg.src = imgSrc;
+        easterEggPopup.classList.add('visible');
+        
+        // Faire disparaître après 2 secondes
+        setTimeout(() => {
+          easterEggPopup.classList.remove('visible');
+        }, 2000);
+      }
+    });
+  });
+}
+

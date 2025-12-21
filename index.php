@@ -119,9 +119,9 @@ session_start();
           </div>
           <div class="overlay">
             <h1 class="hero-names">
-              <span class="hn-first">Tiphaine</span>
+              <span class="hn-first easter-egg-trigger" data-egg="tiphaine">Tiphaine</span>
               <span class="hn-et">&</span>
-              <span class="hn-last">Adrien</span>
+              <span class="hn-last easter-egg-trigger" data-egg="adrien">Adrien</span>
             </h1>
             <div class="date-container">
               <div class="wedding-date">24 octobre 2026</div>
@@ -446,6 +446,11 @@ session_start();
     <button class="popup-close" aria-label="Fermer la notification">&times;</button>
     <p id="popup-message">Message</p>
   </div>
+</div>
+
+<!-- Popup Easter Egg -->
+<div id="easter-egg-popup" class="easter-egg-overlay">
+  <img id="easter-egg-img" src="" alt="Easter Egg">
 </div>
 
 <script src="assets/app.js"></script>
