@@ -720,3 +720,116 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   });
 }
 
+// ===============================
+// Easter egg : déverrouille une zone en bas (overscroll)
+// ===============================
+(function initOverscrollUnlockZone() {
+  const EGG_KEY = 'egg_zone_unlocked';
+  const EGG_TEXT = 'ok voici un peux plus de mignonnerie';
+
+  function isAtBottom() {
+    const doc = document.documentElement;
+    const scrollTop = window.scrollY || doc.scrollTop;
+    const viewport = window.innerHeight || doc.clientHeight;
+    const height = doc.scrollHeight;
+    return scrollTop + viewport >= height - 2;
+  }
+
+  function getEggZoneInActivePage() {
+    // Ton site a des pages .page, dont une .active
+    const active = document.querySelector('.page.active');
+    if (!active) return document.getElementById('egg-zone'); // fallback
+    return active.querySelector('#egg-zone');
+  }
+
+  function unlockEgg() {
+    const zone = getEggZoneInActivePage();
+    if (!zone) return;
+
+    // Une seule fois par session (tu peux mettre localStorage si tu veux persistant)
+    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+
+    sessionStorage.setItem(EGG_KEY, '1');
+    zone.classList.add('unlocked');
+    zone.setAttribute('aria-hidden', 'false');
+
+    // Option : petite popup texte (si tu veux garder le ton)
+    if (typeof showPopup === 'function') {
+      showPopup(EGG_TEXT);
+    }
+
+    // Scroll doux vers la zone
+    setTimeout(() => {
+      zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }
+
+  // Déclenchement “insistance” desktop
+  let wheelScore = 0;
+  window.addEventListener('wheel', (e) => {
+    // Ne pas déclencher si déjà unlock
+    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+
+    const zone = getEggZoneInActivePage();
+    if (!zone) return;
+
+    if (!isAtBottom()) {
+      wheelScore = 0;
+      return;
+    }
+    if (e.deltaY > 0) {
+      wheelScore += e.deltaY;
+      if (wheelScore >= 220) unlockEgg();
+    }
+  }, { passive: true });
+
+  // Déclenchement “insistance” mobile
+  let touchStartY = null;
+  let touchPull = 0;
+
+  window.addEventListener('touchstart', (e) => {
+    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+
+    const zone = getEggZoneInActivePage();
+    if (!zone) return;
+
+    if (!isAtBottom()) {
+      touchStartY = null;
+      touchPull = 0;
+      return;
+    }
+    touchStartY = e.touches?.[0]?.clientY ?? null;
+    touchPull = 0;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+    if (touchStartY === null) return;
+
+    const zone = getEggZoneInActivePage();
+    if (!zone) return;
+
+    if (!isAtBottom()) return;
+
+    const y = e.touches?.[0]?.clientY ?? null;
+    if (y === null) return;
+
+    // doigt qui monte (y diminue) => "insistance" vers le bas de page
+    const delta = touchStartY - y;
+    if (delta > 0) {
+      touchPull = delta;
+      if (touchPull >= 120) unlockEgg();
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    touchStartY = null;
+    touchPull = 0;
+  }, { passive: true });
+
+  // Si la page change (onglets), on peut vouloir ré-appliquer l'unlock
+  // si l'easter egg était déjà déclenché dans la session.
+  // Ici on le laisse "par page", mais tu peux le rendre global.
+})();
+
+

@@ -202,8 +202,16 @@ session_start();
         </div>
       </section>
 
-        <!-- SECTION LOGEMENTS -->
-        <section id="logements" class="page">
+      <section id="egg-zone" class="egg-zone" aria-hidden="true">
+        <div class="egg-inner">
+          <h3>Ok voici un peux plus de mignonnerie</h3>
+          <img src="assets/easter-egg/egg-chats.jpg" alt="Easter egg chats" loading="lazy">
+        </div>
+      </section>
+
+
+      <!-- SECTION LOGEMENTS -->
+      <section id="logements" class="page">
         <h2>Logements</h2>
         
         <div class="lodging-group">

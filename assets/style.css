@@ -128,6 +128,8 @@ body {
 /* ============================== */
 /*  EASTER EGG                    */
 /* ============================== */
+/* ========== Easter egg nos tronche ========== */
+
 .easter-egg-trigger {
   transition: opacity 0.2s ease;
 }
@@ -160,6 +162,38 @@ body {
   object-fit: cover;
   transform: translate(-50%, -50%);
 }
+
+/* ========== Easter egg zone (cachée par défaut) ========== */
+.egg-zone {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 600ms ease, opacity 400ms ease;
+  margin-top: 0;
+}
+
+.egg-zone .egg-inner {
+  background: #fff;
+  border-radius: .7rem;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid rgba(106,143,112,0.3);
+  margin-top: 1rem;
+}
+
+.egg-zone img {
+  width: 100%;
+  height: auto;
+  border-radius: .6rem;
+  margin-top: .8rem;
+  display: block;
+}
+
+/* Débloqué */
+.egg-zone.unlocked {
+  max-height: 1200px; /* assez grand pour image + texte */
+  opacity: 1;
+}
+
 
 
 /* ============================== */
