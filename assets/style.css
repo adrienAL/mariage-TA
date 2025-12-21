@@ -710,8 +710,8 @@ body.show-header .topbar {
 /*  RESPONSIVE MOBILE             */
 /* ============================== */
 @media (max-width: 768px) {
-  body {
-    padding-top: 72px; /* garde un peu de marge pour la topbar fixe */
+  body.show-header {
+    padding-top: 72px;
   }
   
   .brand {
