@@ -396,14 +396,38 @@ document.addEventListener('DOMContentLoaded', initHeaderReveal);
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('hero-scroll');
   if (!btn) return;
+  // smoother scrolling: target the `.intro` block (if present) and animate
+  function smoothScrollTo(endY, duration = 700) {
+    const startY = window.scrollY || window.pageYOffset;
+    const distance = endY - startY;
+    const startTime = performance.now();
+
+    function easeInOutQuad(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+
+    function step(now) {
+      const time = Math.min(1, (now - startTime) / duration);
+      const eased = easeInOutQuad(time);
+      window.scrollTo(0, Math.round(startY + distance * eased));
+      if (time < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
   btn.addEventListener('click', (e) => {
     e.preventDefault();
-    const target = document.getElementById('deroule') || document.getElementById('content');
+    // Prefer the .intro element; fall back to #deroule or #content
+    const intro = document.querySelector('.intro');
+    const target = intro || document.getElementById('deroule') || document.getElementById('content');
     if (!target) return;
-    // scroll so hero is out of view; offset if header visible
+
     const headerOffset = document.body.classList.contains('show-header') ? document.querySelector('.topbar')?.offsetHeight || 0 : 0;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    const offsetAboveIntro = 20; // px above the intro element
+    const finalY = Math.max(0, targetTop - headerOffset - offsetAboveIntro);
+
+    // animate with a comfortable duration
+    smoothScrollTo(finalY, 700);
   });
 });
 
