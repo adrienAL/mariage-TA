@@ -244,6 +244,11 @@ body.show-header .topbar {
   margin: 0;
 }
 
+/* Ajouter du padding-top aux pages non-home quand la topbar est visible */
+body.show-header .page:not(#home) {
+  padding-top: calc(64px + 1.5rem); /* hauteur topbar + padding normal */
+}
+
 #home .hero-fullscreen {
   width: 100%;
   height: 100dvh; /* full viewport height */
