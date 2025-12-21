@@ -341,16 +341,16 @@ session_start();
         
           <form id="shaduns-form">
             <div class="form-row">
-              <label>Prénom (contact principal)</label>
+              <label>Prénom</label>
               <input type="text" name="prenom_contact" required>
             </div>
             <div class="form-row">
-              <label>Nom (contact principal)</label>
+              <label>Nom</label>
               <input type="text" name="nom_contact" required>
             </div>
         
             <div class="form-row">
-              <label>Nombre de personnes (vous inclus)</label>
+              <label>Nombre de personnes (toi inclus)</label>
               <input type="number" name="nb_personnes" id="shaduns-nb" min="1" value="1" required>
             </div>
         
@@ -388,7 +388,7 @@ session_start();
           <!-- Tout ce bloc sera caché si présence = non -->
           <div id="rsvp-extra-fields">
             <div class="form-row">
-              <label>Nombre de personnes (adultes uniquement)</label>
+              <label>Nombre de personnes</label>
               <input type="number" name="nb_personnes" min="1" value="1">
             </div>
         
