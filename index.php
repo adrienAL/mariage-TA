@@ -239,6 +239,83 @@ session_start();
           <p>
             À venir.
           </p>
+          <div class="lodging-group">
+            <h3>La Grange Fleurie – Chamelet</h3>
+            <p><strong>Capacité :</strong> jusqu’à 16 personnes</p>
+            <p><strong>Adresse :</strong> 1092 rue de la Concorde, 69620 Chamelet</p>
+            <p><strong>Réservation :</strong> via le site internet ou Airbnb</p>
+            <p>
+              <strong>Contact :</strong><br>
+              Delphine : 06 80 12 03 23<br>
+              Damien : 06 61 71 70 89<br>
+              Email : <a href="mailto:lagrangefleurie1092@gmail.com">lagrangefleurie1092@gmail.com</a>
+            </p>
+            <a class="btn-reserver" href="https://www.lagrangefleurie-chamelet.fr" target="_blank">
+              Voir le site
+            </a>
+          </div>
+          <div class="lodging-group">
+            <h3>La Muzetière – Chamelet</h3>
+            <p><strong>Distance :</strong> environ 6 km du domaine</p>
+            <p><strong>Hébergements :</strong> 2 gîtes et 2 cabanes</p>
+            <ul>
+              <li>Gîte La Muzetière (5 personnes) : 350 € les 2 nuits</li>
+              <li>Gîte Gisèle et Fred (6 personnes) : 400 € les 2 nuits</li>
+              <li>Cabanes (2 à 4 personnes) :
+                <ul>
+                  <li>170 € / nuit pour 2</li>
+                  <li>220 € / nuit jusqu’à 4 personnes (avec petit-déjeuner)</li>
+                  <li>300 € pour 2 nuits à 2 personnes</li>
+                </ul>
+              </li>
+            </ul>
+            <a class="btn-reserver" href="https://www.lamuzetière.fr" target="_blank">
+              Voir le site
+            </a>
+          </div>
+          <div class="lodging-group">
+            <h3>Évasion Entre Plaines et Forêts</h3>
+            <p><strong>Distance :</strong> environ 5 km du domaine</p>
+            <p><strong>Capacité :</strong> jusqu’à 6 personnes</p>
+            <p><strong>Configuration :</strong></p>
+            <ul>
+              <li>1 chambre avec lit double</li>
+              <li>1 chambre avec 2 lits simples</li>
+              <li>1 canapé convertible dans le salon</li>
+            </ul>
+            <p><strong>Tarif mariage :</strong> 35 € / personne / nuit (210 € la nuit pour 6 personnes)</p>
+            <p><strong>Réservation :</strong> contacter directement le propriétaire</p>
+          </div>
+          <div class="lodging-group">
+            <h3>Domaine Martine Mousset</h3>
+            <p><strong>Capacité :</strong> 8 personnes</p>
+            <p><strong>Configuration :</strong> 4 chambres – logement privatisé</p>
+            <p><strong>Tarif :</strong> 288 € / nuit</p>
+            <p>Tarif incluant le petit-déjeuner, le linge de toilette et les taxes.</p>
+            <p><strong>Réservation :</strong> par téléphone</p>
+            <p><strong>Contact :</strong> 06 37 66 96 95</p>
+          </div>
+          <div class="lodging-group">
+            <h3>Dormir à l’École</h3>
+            <p><strong>Capacité :</strong> 10 personnes</p>
+            <p><strong>Configuration :</strong></p>
+            <ul>
+              <li>5 chambres individuelles</li>
+              <li>3 chambres avec lit double (140)</li>
+              <li>2 chambres avec lit simple (90)</li>
+            </ul>
+            <p><strong>Équipements :</strong> petit coin pour déjeuner</p>
+            <p><strong>Réservation :</strong> par téléphone</p>
+            <p><strong>Contact :</strong> Sandrine Chassignol – 07 83 98 19 29</p>
+          </div>
+          <div class="lodging-group">
+            <h3>Domaine Dumas Annie – Ternand</h3>
+            <p><strong>Type :</strong> chambres d’hôtes</p>
+            <p><strong>Réservation :</strong> les invités doivent appeler directement</p>
+            <p><strong>Contact :</strong> 06 83 32 69 21</p>
+          </div>
+
+
         </div>
         </section>
       
