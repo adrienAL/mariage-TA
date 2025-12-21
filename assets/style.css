@@ -503,6 +503,12 @@ body.show-header .page:not(#home) {
 /* ============================== */
 /*  DÉROULÉ + INFOS DOMAINE       */
 /* ============================== */
+.scroll-area {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 .timeline {
   list-style: none;
   padding: 0;

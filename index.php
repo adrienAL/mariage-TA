@@ -191,9 +191,9 @@ session_start();
         <div class="domain-gallery">
           <img src="assets/montfriol-allee-nuit.jpg" alt="">
           <img src="assets/montfriol-back.jpg" alt="">
-          <img src="assets/montfriol-bar-a-biere.jpg" alt="">
+          <!--<img src="assets/montfriol-bar-a-biere.jpg" alt="">
+          <img src="assets/montfriol-domain-global.jpg" alt="">-->
           <img src="assets/montfriol-cave.jpg" alt="">
-          <img src="assets/montfriol-domain-global.jpg" alt="">
           <img src="assets/montfriol-escalier.jpg" alt="">
           <img src="assets/montfriol-terrasse-avant.jpg" alt="">
           <img src="assets/montfriol-terrasse-jour.jpg" alt="">
