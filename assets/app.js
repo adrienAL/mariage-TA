@@ -67,7 +67,10 @@ function showPage(target) {
   } else {
     // returning to home: hide header again if we're at the top
     setTimeout(() => {
-      if (window.scrollY === 0) document.body.classList.remove('show-header');
+      if (window.scrollY === 0) {
+        document.body.classList.remove('show-header');
+        document.body.classList.add('landing');
+      }
     }, 300);
   }
 }
@@ -360,20 +363,19 @@ document.addEventListener('DOMContentLoaded', initCarousel);
 
 // Header reveal on scroll: show header when user scrolls down
 function initHeaderReveal() {
-  // Only use landing behaviour when the home page is active
-  const home = document.getElementById('home');
-  const isHomeActive = home && home.classList.contains('active');
-
-  if (!isHomeActive) {
-    // On other pages header must always be visible
-    document.body.classList.add('show-header');
-    return;
-  }
-
-  // initial state for home
-  document.body.classList.add('landing');
-
+  // header behaviour depends on which page is currently active
   function onScroll() {
+    const home = document.getElementById('home');
+    const isHomeActive = home && home.classList.contains('active');
+
+    if (!isHomeActive) {
+      // On other pages header must always be visible and landing removed
+      document.body.classList.add('show-header');
+      document.body.classList.remove('landing');
+      return;
+    }
+
+    // home page behaviour: hide header at very top, show when scrolled
     if (window.scrollY > 20) {
       document.body.classList.add('show-header');
       document.body.classList.remove('landing');
