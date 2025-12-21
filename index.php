@@ -242,12 +242,12 @@ session_start();
             <p><strong>Capacité :</strong> jusqu’à 16 personnes</p>
             <p><strong>Adresse :</strong> 1092 rue de la Concorde, 69620 Chamelet</p>
             <p><strong>Réservation :</strong> via le site internet ou Airbnb</p>
-            <p>
-              <strong>Contact :</strong><br>
-              Delphine : <a href="tel:+33680120323">06 80 12 03 23</a><br>
-              Damien : <a href="tel:+33661717089">06 61 71 70 89</a><br>
-              Email : <a href="mailto:lagrangefleurie1092@gmail.com">lagrangefleurie1092@gmail.com</a>
-            </p>
+            <p><strong>Contact :</strong></p>
+            <ul>
+              <li>Delphine : <a href="tel:+33680120323">06 80 12 03 23</a></li>
+              <li>Damien : <a href="tel:+33661717089">06 61 71 70 89</a></li>
+              <li>Email : <a href="mailto:lagrangefleurie1092@gmail.com">lagrangefleurie1092@gmail.com</a></li>
+            </ul>
 
             <div class="lodging-actions">
               <a class="btn-reserver" href="https://www.lagrangefleurie-chamelet.fr" target="_blank" rel="noopener">
