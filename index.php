@@ -234,11 +234,9 @@ session_start();
             </button>
         </div>
         
-        <div class="lodging-group">
-          <h3>Logements à proximité</h3>
-          <p>
-            À venir.
-          </p>
+        <section class="lodging-wrap">
+          <h2>Logements à proximité</h2>
+
           <div class="lodging-group">
             <h3>La Grange Fleurie – Chamelet</h3>
             <p><strong>Capacité :</strong> jusqu’à 16 personnes</p>
@@ -246,14 +244,19 @@ session_start();
             <p><strong>Réservation :</strong> via le site internet ou Airbnb</p>
             <p>
               <strong>Contact :</strong><br>
-              Delphine : 06 80 12 03 23<br>
-              Damien : 06 61 71 70 89<br>
+              Delphine : <a href="tel:+33680120323">06 80 12 03 23</a><br>
+              Damien : <a href="tel:+33661717089">06 61 71 70 89</a><br>
               Email : <a href="mailto:lagrangefleurie1092@gmail.com">lagrangefleurie1092@gmail.com</a>
             </p>
-            <a class="btn-reserver" href="https://www.lagrangefleurie-chamelet.fr" target="_blank">
-              Voir le site
-            </a>
+
+            <div class="lodging-actions">
+              <a class="btn-reserver" href="https://www.lagrangefleurie-chamelet.fr" target="_blank" rel="noopener">
+                Voir le site
+              </a>
+              <a class="btn-call" href="tel:+33680120323">Appeler</a>
+            </div>
           </div>
+
           <div class="lodging-group">
             <h3>La Muzetière – Chamelet</h3>
             <p><strong>Distance :</strong> environ 6 km du domaine</p>
@@ -269,10 +272,15 @@ session_start();
                 </ul>
               </li>
             </ul>
-            <a class="btn-reserver" href="https://www.lamuzetière.fr" target="_blank">
-              Voir le site
-            </a>
+
+            <div class="lodging-actions">
+              <a class="btn-reserver" href="https://www.lamuzetière.fr" target="_blank" rel="noopener">
+                Voir le site
+              </a>
+              <a class="btn-call" href="tel:+33680120323">Appeler</a>
+            </div>
           </div>
+
           <div class="lodging-group">
             <h3>Évasion Entre Plaines et Forêts</h3>
             <p><strong>Distance :</strong> environ 5 km du domaine</p>
@@ -285,7 +293,12 @@ session_start();
             </ul>
             <p><strong>Tarif mariage :</strong> 35 € / personne / nuit (210 € la nuit pour 6 personnes)</p>
             <p><strong>Réservation :</strong> contacter directement le propriétaire</p>
+
+            <div class="lodging-actions">
+              <a class="btn-call" href="tel:+33680120323">Appeler</a>
+            </div>
           </div>
+
           <div class="lodging-group">
             <h3>Domaine Martine Mousset</h3>
             <p><strong>Capacité :</strong> 8 personnes</p>
@@ -293,8 +306,13 @@ session_start();
             <p><strong>Tarif :</strong> 288 € / nuit</p>
             <p>Tarif incluant le petit-déjeuner, le linge de toilette et les taxes.</p>
             <p><strong>Réservation :</strong> par téléphone</p>
-            <p><strong>Contact :</strong> 06 37 66 96 95</p>
+            <p><strong>Contact :</strong> <a href="tel:+33637669695">06 37 66 96 95</a></p>
+
+            <div class="lodging-actions">
+              <a class="btn-call" href="tel:+33637669695">Appeler</a>
+            </div>
           </div>
+
           <div class="lodging-group">
             <h3>Dormir à l’École</h3>
             <p><strong>Capacité :</strong> 10 personnes</p>
@@ -306,17 +324,26 @@ session_start();
             </ul>
             <p><strong>Équipements :</strong> petit coin pour déjeuner</p>
             <p><strong>Réservation :</strong> par téléphone</p>
-            <p><strong>Contact :</strong> Sandrine Chassignol – 07 83 98 19 29</p>
+            <p><strong>Contact :</strong> <a href="tel:+33783981929">07 83 98 19 29</a></p>
+
+            <div class="lodging-actions">
+              <a class="btn-call" href="tel:+33783981929">Appeler</a>
+            </div>
           </div>
+
           <div class="lodging-group">
             <h3>Domaine Dumas Annie – Ternand</h3>
             <p><strong>Type :</strong> chambres d’hôtes</p>
             <p><strong>Réservation :</strong> les invités doivent appeler directement</p>
-            <p><strong>Contact :</strong> 06 83 32 69 21</p>
+            <p><strong>Contact :</strong> <a href="tel:+33683326921">06 83 32 69 21</a></p>
+
+            <div class="lodging-actions">
+              <a class="btn-call" href="tel:+33683326921">Appeler</a>
+            </div>
           </div>
 
+        </section>
 
-        </div>
         </section>
       
         <!-- SECTION SHADUNS (page interne) -->
