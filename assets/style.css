@@ -345,6 +345,10 @@ body.show-header .topbar {
 }
 .carousel-dots button.active { background: rgba(255,255,255,0.95); }
 
+/* Hide navigation controls: arrows and dots (both desktop and mobile) */
+.carousel-btn,
+.carousel-dots { display: none !important; }
+
 /* Couche image pour stabilité du z-index */
 .hero-fullscreen::before {
   content: "";
