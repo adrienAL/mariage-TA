@@ -27,11 +27,6 @@ body {
   padding-top: 0; /* header hidden on landing; added back when scrolled */
 }
 
-/* when header should be visible (after scroll) we add padding to avoid overlap */
-body.show-header {
-  padding-top: 72px;
-}
-
 /* Écran mot de passe */
 #password-screen {
   min-height: 100vh;
@@ -732,9 +727,6 @@ body.show-header .topbar {
 /*  RESPONSIVE MOBILE             */
 /* ============================== */
 @media (max-width: 768px) {
-  body.show-header {
-    padding-top: 72px;
-  }
   
   .brand {
       align-items: center;
