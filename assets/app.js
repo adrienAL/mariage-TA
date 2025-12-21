@@ -753,11 +753,6 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
     zone.classList.add('unlocked');
     zone.setAttribute('aria-hidden', 'false');
 
-    // Option : petite popup texte (si tu veux garder le ton)
-    if (typeof showPopup === 'function') {
-      showPopup(EGG_TEXT);
-    }
-
     // Scroll doux vers la zone
     setTimeout(() => {
       zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -779,7 +774,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
     }
     if (e.deltaY > 0) {
       wheelScore += e.deltaY;
-      if (wheelScore >= 220) unlockEgg();
+      if (wheelScore >= 600) unlockEgg();
     }
   }, { passive: true });
 
@@ -818,7 +813,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
     const delta = touchStartY - y;
     if (delta > 0) {
       touchPull = delta;
-      if (touchPull >= 120) unlockEgg();
+      if (touchPull >= 350) unlockEgg();
     }
   }, { passive: true });
 
