@@ -747,7 +747,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
     if (!zone) return;
 
     // Une seule fois par session (tu peux mettre localStorage si tu veux persistant)
-    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+    //if (sessionStorage.getItem(EGG_KEY) === '1') return;
 
     sessionStorage.setItem(EGG_KEY, '1');
     zone.classList.add('unlocked');
@@ -763,7 +763,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   let wheelScore = 0;
   window.addEventListener('wheel', (e) => {
     // Ne pas déclencher si déjà unlock
-    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+    //if (sessionStorage.getItem(EGG_KEY) === '1') return;
 
     const zone = getEggZoneInActivePage();
     if (!zone) return;
@@ -774,7 +774,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
     }
     if (e.deltaY > 0) {
       wheelScore += e.deltaY;
-      if (wheelScore >= 600) unlockEgg();
+      if (wheelScore >= 6000) unlockEgg();
     }
   }, { passive: true });
 
@@ -783,7 +783,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   let touchPull = 0;
 
   window.addEventListener('touchstart', (e) => {
-    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+    //if (sessionStorage.getItem(EGG_KEY) === '1') return;
 
     const zone = getEggZoneInActivePage();
     if (!zone) return;
@@ -798,7 +798,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   }, { passive: true });
 
   window.addEventListener('touchmove', (e) => {
-    if (sessionStorage.getItem(EGG_KEY) === '1') return;
+    //if (sessionStorage.getItem(EGG_KEY) === '1') return;
     if (touchStartY === null) return;
 
     const zone = getEggZoneInActivePage();
@@ -813,7 +813,7 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
     const delta = touchStartY - y;
     if (delta > 0) {
       touchPull = delta;
-      if (touchPull >= 350) unlockEgg();
+      if (touchPull >= 3500) unlockEgg();
     }
   }, { passive: true });
 
