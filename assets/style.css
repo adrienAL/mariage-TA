@@ -890,3 +890,31 @@ body.show-header .page:not(#home) {
     background: url('../assets/home-password/mobile.jpeg') center/cover no-repeat;
   }
 }
+/* Bouton de déconnexion discret */
+.logout-discrete {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.logout-discrete:hover {
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  transform: scale(1.1);
+}
+
+.logout-discrete:active {
+  transform: scale(0.95);
+}

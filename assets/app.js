@@ -691,18 +691,33 @@ const easterEggTriggers = document.querySelectorAll('.easter-egg-trigger');
 const easterEggPopup = document.getElementById('easter-egg-popup');
 const easterEggImg = document.getElementById('easter-egg-img');
 
-// Détection des touches pour prolonger l'affichage d'Adrien
-let isKeyPressed = false;
+// Gestion de l'affichage d'Adrien avec détection clavier
 let easterEggTimeout = null;
+let currentEggType = null;
+const ADRIEN_IDLE_TIME = 2000; // Temps avant disparition après arrêt de frappe (2 sec)
+const TIPHAINE_DISPLAY_TIME = 2000; // Temps d'affichage pour Tiphaine (2 sec)
 
 // Détection de la séquence secrète 4815162342
 let keySequence = '';
 const SECRET_CODE = '4815162342';
 const SECRET_MESSAGE = 'c&7Xo#32-v';
 
-document.addEventListener('keydown', (e) => {
-  isKeyPressed = true;
+// Fonction pour réinitialiser le timer de disparition
+function resetEasterEggTimer() {
+  if (easterEggTimeout) {
+    clearTimeout(easterEggTimeout);
+  }
   
+  // Si c'est Adrien qui est affiché, on prolonge l'affichage
+  if (currentEggType === 'adrien' && easterEggPopup && easterEggPopup.classList.contains('visible')) {
+    easterEggTimeout = setTimeout(() => {
+      easterEggPopup.classList.remove('visible');
+      currentEggType = null;
+    }, ADRIEN_IDLE_TIME);
+  }
+}
+
+document.addEventListener('keydown', (e) => {
   // Ajouter la touche à la séquence (seulement les chiffres)
   if (e.key >= '0' && e.key <= '9') {
     keySequence += e.key;
@@ -718,10 +733,11 @@ document.addEventListener('keydown', (e) => {
       keySequence = ''; // Réinitialiser
     }
   }
-});
-
-document.addEventListener('keyup', () => {
-  isKeyPressed = false;
+  
+  // Si Adrien est affiché, prolonger son affichage à chaque frappe
+  if (currentEggType === 'adrien') {
+    resetEasterEggTimer();
+  }
 });
 
 if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
@@ -743,21 +759,20 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
         
         easterEggImg.src = imgSrc;
         easterEggPopup.classList.add('visible');
-        
-        // Durée d'affichage : 2 sec par défaut, +1 sec si une touche est pressée (pour Adrien)
-        let displayDuration = 2000;
-        if (eggType === 'adrien' && isKeyPressed) {
-          displayDuration = 3000; // 1 seconde de plus
-        }
+        currentEggType = eggType;
         
         // Annuler le timeout précédent si existant
         if (easterEggTimeout) {
           clearTimeout(easterEggTimeout);
         }
         
-        // Faire disparaître après la durée calculée
+        // Pour Adrien : disparaît après 2 sec d'inactivité clavier
+        // Pour Tiphaine : disparaît après 2 sec fixe
+        const displayDuration = eggType === 'adrien' ? ADRIEN_IDLE_TIME : TIPHAINE_DISPLAY_TIME;
+        
         easterEggTimeout = setTimeout(() => {
           easterEggPopup.classList.remove('visible');
+          currentEggType = null;
         }, displayDuration);
       }
     });

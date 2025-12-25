@@ -594,5 +594,9 @@ Lost : désactiver le bunker sur ma gueule de con
 </div>
 
 <script src="assets/app.js"></script>
+
+<!-- Bouton de déconnexion discret -->
+<a href="?logout=1" id="logout-btn" class="logout-discrete" title="Se déconnecter">⎋</a>
+
 </body>
 </html>
