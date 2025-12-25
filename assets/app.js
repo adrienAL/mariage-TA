@@ -715,13 +715,57 @@ function resetEasterEggTimer() {
       currentEggType = null;
       // Réinitialiser la séquence si la photo disparaît
       keySequence = '';
+      // Retirer le liseré
+      if (easterEggImg) {
+        easterEggImg.classList.remove('typing', 'progress-10', 'progress-30', 'progress-50', 'progress-70', 'progress-90');
+      }
     }, ADRIEN_IDLE_TIME);
+  }
+}
+
+// Fonction pour mettre à jour le liseré en fonction de la progression
+function updateBorderProgress() {
+  if (!easterEggImg) return;
+  
+  // Retirer toutes les classes de progression
+  easterEggImg.classList.remove('typing', 'progress-10', 'progress-30', 'progress-50', 'progress-70', 'progress-90');
+  
+  if (currentEggType !== 'adrien' || !easterEggPopup.classList.contains('visible')) {
+    return;
+  }
+  
+  // Calculer le pourcentage de progression
+  const progress = (keySequence.length / SECRET_CODE.length) * 100;
+  
+  if (progress === 0) {
+    easterEggImg.classList.add('typing');
+  } else if (progress < 30) {
+    easterEggImg.classList.add('progress-10');
+  } else if (progress < 50) {
+    easterEggImg.classList.add('progress-30');
+  } else if (progress < 70) {
+    easterEggImg.classList.add('progress-50');
+  } else if (progress < 90) {
+    easterEggImg.classList.add('progress-70');
+  } else {
+    easterEggImg.classList.add('progress-90');
   }
 }
 
 document.addEventListener('keydown', (e) => {
   // Le code secret ne fonctionne QUE si la photo d'Adrien est visible
   if (currentEggType === 'adrien' && easterEggPopup && easterEggPopup.classList.contains('visible')) {
+    
+    // Ajouter le liseré dès qu'une touche est pressée
+    if (!easterEggImg.classList.contains('typing') && 
+        !easterEggImg.classList.contains('progress-10') &&
+        !easterEggImg.classList.contains('progress-30') &&
+        !easterEggImg.classList.contains('progress-50') &&
+        !easterEggImg.classList.contains('progress-70') &&
+        !easterEggImg.classList.contains('progress-90')) {
+      easterEggImg.classList.add('typing');
+    }
+    
     // Ajouter la touche à la séquence (seulement les chiffres)
     if (e.key >= '0' && e.key <= '9') {
       keySequence += e.key;
@@ -731,10 +775,19 @@ document.addEventListener('keydown', (e) => {
         keySequence = keySequence.slice(-SECRET_CODE.length);
       }
       
+      // Mettre à jour le liseré en fonction de la progression
+      updateBorderProgress();
+      
       // Vérifier si la séquence correspond
       if (keySequence === SECRET_CODE) {
-        showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE}</strong><br><small>Utilisez ce code comme mot de passe...</small>`);
+        showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE}</strong>`);
         keySequence = ''; // Réinitialiser
+        // Retirer le liseré après validation
+        setTimeout(() => {
+          if (easterEggImg) {
+            easterEggImg.classList.remove('typing', 'progress-10', 'progress-30', 'progress-50', 'progress-70', 'progress-90');
+          }
+        }, 500);
       }
     }
     
