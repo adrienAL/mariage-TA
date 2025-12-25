@@ -885,6 +885,13 @@ body.show-header .page:not(#home) {
     flex-wrap: wrap;
   }
 
+  /* Section intro avec padding sur mobile */
+  .intro {
+    padding: 0 1.5rem;
+    margin: 1.5rem auto 1rem;
+    font-size: 1rem;
+  }
+
   /* Image de fond mobile pour password-screen */
   #password-screen {
     background: url('../assets/home-password/mobile.jpeg') center/cover no-repeat;
