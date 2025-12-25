@@ -10,7 +10,10 @@
 - L'utilisateur peut taper la séquence `4815162342` n'importe où sur le site **QUAND la photo d'Adrien est visible**
 - Un popup apparaît avec le message : **"c&7Xo#32-v"**
 - Ce message est le mot de passe secret pour accéder à la zone cachée
-- **Sécurité** : Le code et le message sont hashés/encodés dans le JavaScript pour éviter d'être visibles dans le code source
+- **Sécurité maximale** : 
+  - Le code est hashé côté client (SHA-256)
+  - Le message secret est **uniquement stocké côté serveur**
+  - Impossible de trouver le message dans le code JavaScript
 
 ### 3. Formulaire secret 🏆
 - En entrant le mot de passe `c&7Xo#32-v` sur la page de connexion, l'utilisateur accède à un formulaire spécial
@@ -43,8 +46,9 @@ CREATE TABLE IF NOT EXISTS secret_finders (
 
 ### 2. Fichiers modifiés
 - ✅ `index.php` - Ajout du formulaire secret
-- ✅ `assets/app.js` - Détection des touches et code secret
+- ✅ `assets/app.js` - Détection des touches et code secret (hashé)
 - ✅ `api/check_password.php` - Gestion du mot de passe secret
+- ✅ `api/validate_secret_code.php` - Validation du code et retour du message secret (nouveau)
 - ✅ `api/secret_finder.php` - Enregistrement des trouveurs (nouveau)
 - ✅ `view_secret_finders.php` - Page admin (nouveau)
 - ✅ `create_secret_table.sql` - Script SQL (nouveau)
@@ -93,9 +97,11 @@ CREATE TABLE IF NOT EXISTS secret_finders (
 ## Personnalisation
 
 ### ⚠️ Important - Codes secrets
-Les codes secrets sont maintenant **hashés/encodés** dans le JavaScript pour ne pas être visibles dans le code source :
-- Le code numérique `4815162342` est stocké sous forme de hash SHA-256
-- Le message `c&7Xo#32-v` est encodé en base64
+Les codes secrets sont maintenant **entièrement sécurisés** :
+- Le code numérique `4815162342` est stocké sous forme de hash SHA-256 dans le JavaScript
+- Le message secret `c&7Xo#32-v` est **uniquement stocké côté serveur** dans `api/validate_secret_code.php`
+- Le JavaScript ne contient JAMAIS le message en clair, même encodé
+- La validation se fait via une requête API sécurisée
 
 ### Changer le code secret numérique
 1. Générez le hash SHA-256 de votre nouveau code :
@@ -107,15 +113,15 @@ $code = 'VOTRE_CODE'; $bytes = [System.Text.Encoding]::UTF8.GetBytes($code); $ha
 const SECRET_CODE_HASH = 'NOUVEAU_HASH_ICI';
 const SECRET_CODE_LENGTH = 10; // Longueur de votre code
 ```
+3. Dans `api/validate_secret_code.php`, remplacez :
+```php
+$SECRET_CODE = 'VOTRE_NOUVEAU_CODE';
+```
 
 ### Changer le message secret
-1. Encodez votre message en base64 :
-```javascript
-btoa('VOTRE_MESSAGE') // Dans la console du navigateur
-```
-2. Dans `assets/app.js`, remplacez :
-```javascript
-const SECRET_MESSAGE_ENCRYPTED = atob('VOTRE_BASE64_ICI');
+Dans `api/validate_secret_code.php` uniquement :
+```php
+$SECRET_MESSAGE = 'VOTRE_NOUVEAU_MESSAGE';
 ```
 
 ### Changer le mot de passe secret

@@ -699,9 +699,8 @@ const TIPHAINE_DISPLAY_TIME = 2000; // Temps d'affichage pour Tiphaine (2 sec)
 
 // Détection de la séquence secrète (hashée pour sécurité)
 let keySequence = '';
-// Hash SHA-256 du code secret
+// Hash SHA-256 du code secret (pour validation)
 const SECRET_CODE_HASH = '6085fee2997a53fe15f195d907590238ec1f717adf6ac7fd4d7ed137f91892aa';
-const SECRET_MESSAGE_ENCRYPTED = atob('YyY3WG8jMzItdg=='); // Encodé en base64
 
 // Fonction de hashing simple (SHA-256)
 async function hashString(str) {
@@ -791,9 +790,24 @@ document.addEventListener('keydown', (e) => {
       
       // Vérifier si la séquence correspond (via hash)
       if (keySequence.length === 10) {
-        hashString(keySequence).then(hash => {
+        hashString(keySequence).then(async hash => {
           if (hash === SECRET_CODE_HASH) {
-            showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE_ENCRYPTED}</strong>`);
+            // Valider le code côté serveur et récupérer le message
+            try {
+              const response = await fetch('api/validate_secret_code.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ hash: hash })
+              });
+              const data = await response.json();
+              
+              if (data.success) {
+                showPopup(`🔓 Code secret débloqué !<br><strong>${data.message}</strong>`);
+              }
+            } catch (err) {
+              console.error('Erreur validation code secret:', err);
+            }
+            
             keySequence = ''; // Réinitialiser
             // Retirer le liseré après validation
             setTimeout(() => {
