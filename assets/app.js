@@ -697,10 +697,20 @@ let currentEggType = null;
 const ADRIEN_IDLE_TIME = 2000; // Temps avant disparition après arrêt de frappe (2 sec)
 const TIPHAINE_DISPLAY_TIME = 2000; // Temps d'affichage pour Tiphaine (2 sec)
 
-// Détection de la séquence secrète 4815162342
+// Détection de la séquence secrète (hashée pour sécurité)
 let keySequence = '';
-const SECRET_CODE = '4815162342';
-const SECRET_MESSAGE = 'c&7Xo#32-v';
+// Hash SHA-256 du code secret
+const SECRET_CODE_HASH = '6085fee2997a53fe15f195d907590238ec1f717adf6ac7fd4d7ed137f91892aa';
+const SECRET_MESSAGE_ENCRYPTED = atob('YyY3WG8jMzItdg=='); // Encodé en base64
+
+// Fonction de hashing simple (SHA-256)
+async function hashString(str) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 // Fonction pour réinitialiser le timer de disparition
 function resetEasterEggTimer() {
@@ -734,8 +744,9 @@ function updateBorderProgress() {
     return;
   }
   
-  // Calculer le pourcentage de progression
-  const progress = (keySequence.length / SECRET_CODE.length) * 100;
+  // Calculer le pourcentage de progression (code secret de 10 caractères)
+  const SECRET_CODE_LENGTH = 10;
+  const progress = (keySequence.length / SECRET_CODE_LENGTH) * 100;
   
   if (progress === 0) {
     easterEggImg.classList.add('typing');
@@ -770,24 +781,28 @@ document.addEventListener('keydown', (e) => {
     if (e.key >= '0' && e.key <= '9') {
       keySequence += e.key;
       
-      // Limiter la longueur de la séquence
-      if (keySequence.length > SECRET_CODE.length) {
-        keySequence = keySequence.slice(-SECRET_CODE.length);
+      // Limiter la longueur de la séquence (10 caractères max)
+      if (keySequence.length > 10) {
+        keySequence = keySequence.slice(-10);
       }
       
       // Mettre à jour le liseré en fonction de la progression
       updateBorderProgress();
       
-      // Vérifier si la séquence correspond
-      if (keySequence === SECRET_CODE) {
-        showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE}</strong>`);
-        keySequence = ''; // Réinitialiser
-        // Retirer le liseré après validation
-        setTimeout(() => {
-          if (easterEggImg) {
-            easterEggImg.classList.remove('typing', 'progress-10', 'progress-30', 'progress-50', 'progress-70', 'progress-90');
+      // Vérifier si la séquence correspond (via hash)
+      if (keySequence.length === 10) {
+        hashString(keySequence).then(hash => {
+          if (hash === SECRET_CODE_HASH) {
+            showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE_ENCRYPTED}</strong>`);
+            keySequence = ''; // Réinitialiser
+            // Retirer le liseré après validation
+            setTimeout(() => {
+              if (easterEggImg) {
+                easterEggImg.classList.remove('typing', 'progress-10', 'progress-30', 'progress-50', 'progress-70', 'progress-90');
+              }
+            }, 500);
           }
-        }, 500);
+        });
       }
     }
     

@@ -7,9 +7,10 @@
 - **Si une touche du clavier est pressée** pendant le clic, la photo reste affichée **1 seconde de plus** (3 secondes au lieu de 2)
 
 ### 2. Code secret 4815162342 🔐
-- L'utilisateur peut taper la séquence `4815162342` n'importe où sur le site
+- L'utilisateur peut taper la séquence `4815162342` n'importe où sur le site **QUAND la photo d'Adrien est visible**
 - Un popup apparaît avec le message : **"c&7Xo#32-v"**
 - Ce message est le mot de passe secret pour accéder à la zone cachée
+- **Sécurité** : Le code et le message sont hashés/encodés dans le JavaScript pour éviter d'être visibles dans le code source
 
 ### 3. Formulaire secret 🏆
 - En entrant le mot de passe `c&7Xo#32-v` sur la page de connexion, l'utilisateur accède à un formulaire spécial
@@ -52,13 +53,14 @@ CREATE TABLE IF NOT EXISTS secret_finders (
 
 ### Scénario utilisateur
 1. L'utilisateur navigue sur le site
-2. Il tape `4815162342` sur son clavier
-3. Un popup apparaît avec le code : `c&7Xo#32-v`
-4. Il se déconnecte (ou ouvre un autre navigateur)
-5. Il entre le code `c&7Xo#32-v` comme mot de passe
-6. Il arrive sur le formulaire secret
-7. Il enregistre son nom
-8. Il est redirigé vers la page principale
+2. Il clique sur "Adrien" pour afficher sa photo
+3. Pendant que la photo est visible, il tape `4815162342` sur son clavier
+4. Un popup apparaît avec le code : `c&7Xo#32-v`
+5. Il se déconnecte (ou ouvre un autre navigateur)
+6. Il entre le code `c&7Xo#32-v` comme mot de passe
+7. Il arrive sur le formulaire secret
+8. Il enregistre son nom
+9. Il est redirigé vers la page principale
 
 ### Pour voir qui a trouvé
 1. Allez sur `view_secret_finders.php`
@@ -79,8 +81,9 @@ CREATE TABLE IF NOT EXISTS secret_finders (
 2. Maintenez une touche enfoncée et cliquez sur "Adrien" → la photo reste 3 secondes
 
 ### Tester le code secret
-1. Tapez `4815162342` (les chiffres peuvent être dispersés dans le temps)
-2. Le popup avec le code doit apparaître
+1. Cliquez sur "Adrien" pour afficher sa photo
+2. Pendant que la photo est visible, tapez `4815162342`
+3. Le popup avec le code doit apparaître
 
 ### Tester le formulaire secret
 1. Sur la page de connexion, entrez `c&7Xo#32-v`
@@ -89,11 +92,30 @@ CREATE TABLE IF NOT EXISTS secret_finders (
 
 ## Personnalisation
 
-### Changer le code secret
-Dans `assets/app.js`, ligne ~720 :
+### ⚠️ Important - Codes secrets
+Les codes secrets sont maintenant **hashés/encodés** dans le JavaScript pour ne pas être visibles dans le code source :
+- Le code numérique `4815162342` est stocké sous forme de hash SHA-256
+- Le message `c&7Xo#32-v` est encodé en base64
+
+### Changer le code secret numérique
+1. Générez le hash SHA-256 de votre nouveau code :
+```powershell
+$code = 'VOTRE_CODE'; $bytes = [System.Text.Encoding]::UTF8.GetBytes($code); $hash = [System.Security.Cryptography.SHA256]::Create().ComputeHash($bytes); ($hash | ForEach-Object { $_.ToString('x2') }) -join ''
+```
+2. Dans `assets/app.js`, remplacez :
 ```javascript
-const SECRET_CODE = '4815162342'; // Votre nouveau code
-const SECRET_MESSAGE = 'c&7Xo#32-v'; // Votre nouveau message
+const SECRET_CODE_HASH = 'NOUVEAU_HASH_ICI';
+const SECRET_CODE_LENGTH = 10; // Longueur de votre code
+```
+
+### Changer le message secret
+1. Encodez votre message en base64 :
+```javascript
+btoa('VOTRE_MESSAGE') // Dans la console du navigateur
+```
+2. Dans `assets/app.js`, remplacez :
+```javascript
+const SECRET_MESSAGE_ENCRYPTED = atob('VOTRE_BASE64_ICI');
 ```
 
 ### Changer le mot de passe secret
