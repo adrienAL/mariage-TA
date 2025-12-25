@@ -713,29 +713,32 @@ function resetEasterEggTimer() {
     easterEggTimeout = setTimeout(() => {
       easterEggPopup.classList.remove('visible');
       currentEggType = null;
+      // Réinitialiser la séquence si la photo disparaît
+      keySequence = '';
     }, ADRIEN_IDLE_TIME);
   }
 }
 
 document.addEventListener('keydown', (e) => {
-  // Ajouter la touche à la séquence (seulement les chiffres)
-  if (e.key >= '0' && e.key <= '9') {
-    keySequence += e.key;
-    
-    // Limiter la longueur de la séquence
-    if (keySequence.length > SECRET_CODE.length) {
-      keySequence = keySequence.slice(-SECRET_CODE.length);
+  // Le code secret ne fonctionne QUE si la photo d'Adrien est visible
+  if (currentEggType === 'adrien' && easterEggPopup && easterEggPopup.classList.contains('visible')) {
+    // Ajouter la touche à la séquence (seulement les chiffres)
+    if (e.key >= '0' && e.key <= '9') {
+      keySequence += e.key;
+      
+      // Limiter la longueur de la séquence
+      if (keySequence.length > SECRET_CODE.length) {
+        keySequence = keySequence.slice(-SECRET_CODE.length);
+      }
+      
+      // Vérifier si la séquence correspond
+      if (keySequence === SECRET_CODE) {
+        showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE}</strong><br><small>Utilisez ce code comme mot de passe...</small>`);
+        keySequence = ''; // Réinitialiser
+      }
     }
     
-    // Vérifier si la séquence correspond
-    if (keySequence === SECRET_CODE) {
-      showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE}</strong><br><small>Utilisez ce code comme mot de passe...</small>`);
-      keySequence = ''; // Réinitialiser
-    }
-  }
-  
-  // Si Adrien est affiché, prolonger son affichage à chaque frappe
-  if (currentEggType === 'adrien') {
+    // Prolonger l'affichage d'Adrien à chaque frappe
     resetEasterEggTimer();
   }
 });
