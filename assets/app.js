@@ -691,6 +691,39 @@ const easterEggTriggers = document.querySelectorAll('.easter-egg-trigger');
 const easterEggPopup = document.getElementById('easter-egg-popup');
 const easterEggImg = document.getElementById('easter-egg-img');
 
+// Détection des touches pour prolonger l'affichage d'Adrien
+let isKeyPressed = false;
+let easterEggTimeout = null;
+
+// Détection de la séquence secrète 4815162342
+let keySequence = '';
+const SECRET_CODE = '4815162342';
+const SECRET_MESSAGE = 'c&7Xo#32-v';
+
+document.addEventListener('keydown', (e) => {
+  isKeyPressed = true;
+  
+  // Ajouter la touche à la séquence (seulement les chiffres)
+  if (e.key >= '0' && e.key <= '9') {
+    keySequence += e.key;
+    
+    // Limiter la longueur de la séquence
+    if (keySequence.length > SECRET_CODE.length) {
+      keySequence = keySequence.slice(-SECRET_CODE.length);
+    }
+    
+    // Vérifier si la séquence correspond
+    if (keySequence === SECRET_CODE) {
+      showPopup(`🔓 Code secret débloqué !<br><strong>${SECRET_MESSAGE}</strong><br><small>Utilisez ce code comme mot de passe...</small>`);
+      keySequence = ''; // Réinitialiser
+    }
+  }
+});
+
+document.addEventListener('keyup', () => {
+  isKeyPressed = false;
+});
+
 if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   easterEggTriggers.forEach(trigger => {
     trigger.addEventListener('click', (e) => {
@@ -711,10 +744,21 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
         easterEggImg.src = imgSrc;
         easterEggPopup.classList.add('visible');
         
-        // Faire disparaître après 2 secondes
-        setTimeout(() => {
+        // Durée d'affichage : 2 sec par défaut, +1 sec si une touche est pressée (pour Adrien)
+        let displayDuration = 2000;
+        if (eggType === 'adrien' && isKeyPressed) {
+          displayDuration = 3000; // 1 seconde de plus
+        }
+        
+        // Annuler le timeout précédent si existant
+        if (easterEggTimeout) {
+          clearTimeout(easterEggTimeout);
+        }
+        
+        // Faire disparaître après la durée calculée
+        easterEggTimeout = setTimeout(() => {
           easterEggPopup.classList.remove('visible');
-        }, 2000);
+        }, displayDuration);
       }
     });
   });
@@ -827,4 +871,50 @@ if (easterEggTriggers.length > 0 && easterEggPopup && easterEggImg) {
   // Ici on le laisse "par page", mais tu peux le rendre global.
 })();
 
-
+// ===============================
+// Formulaire Secret Finder
+// ===============================
+const secretFinderForm = document.getElementById('secret-finder-form');
+if (secretFinderForm) {
+  secretFinderForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = secretFinderForm.querySelector('button[type="submit"]');
+    const statusEl = document.getElementById('secret-status');
+    
+    submitBtn.disabled = true;
+    
+    try {
+      const formData = new FormData(secretFinderForm);
+      const res = await fetch('api/secret_finder.php', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      
+      if (statusEl) {
+        statusEl.textContent = data.message || '';
+        statusEl.classList.remove('success', 'error');
+        
+        if (data.success) {
+          statusEl.classList.add('success');
+          secretFinderForm.reset();
+          
+          // Redirection après 2 secondes
+          setTimeout(() => {
+            window.location.href = 'index.php?logout=1';
+          }, 2000);
+        } else {
+          statusEl.classList.add('error');
+        }
+      }
+    } catch (err) {
+      if (statusEl) {
+        statusEl.textContent = 'Erreur lors de l\'enregistrement';
+        statusEl.classList.add('error');
+      }
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+}

@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Gestion de la déconnexion
+if (isset($_GET['logout'])) {
+  session_destroy();
+  header('Location: index.php');
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <!--                      SITE MARIAGE TIPHAINE & ADRIEN 2026 
@@ -96,6 +103,54 @@ Lost : désactiver le bunker sur ma gueule de con
       <button id="pwd-btn">Entrer</button>
       <p id="pwd-error" class="error"></p>
     </div>
+  </div>
+
+<?php elseif (isset($_SESSION['secret_access']) && $_SESSION['secret_access'] === true): ?>
+
+  <!-- FORMULAIRE SECRET POUR CEUX QUI ONT TROUVÉ LE CODE -->
+  <style>
+    body.loading { overflow: hidden; }
+    #secret-form-container { opacity: 0; transition: opacity .6s ease; }
+    body.loaded #secret-form-container { opacity: 1; }
+  </style>
+
+  <script>
+    document.body.classList.add('loading');
+    window.addEventListener('load', () => {
+      document.body.classList.remove('loading');
+      document.body.classList.add('loaded');
+    });
+  </script>
+
+  <div id="secret-form-container">
+    <header class="topbar">
+      <div class="brand">🔓 Zone Secrète</div>
+    </header>
+
+    <main style="padding: 4rem 2rem; max-width: 600px; margin: 0 auto; min-height: 100vh;">
+      <h1 style="text-align: center; margin-bottom: 2rem;">🎉 Félicitations !</h1>
+      <p style="text-align: center; margin-bottom: 2rem;">
+        Vous avez trouvé le code secret ! Pour immortaliser votre exploit, 
+        laissez-nous votre nom ci-dessous.
+      </p>
+
+      <form id="secret-finder-form" style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="form-row">
+          <label>Prénom</label>
+          <input type="text" name="prenom" required>
+        </div>
+        <div class="form-row">
+          <label>Nom</label>
+          <input type="text" name="nom" required>
+        </div>
+        <button type="submit">Enregistrer mon exploit 🏆</button>
+        <p id="secret-status"></p>
+      </form>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="?logout=1" style="color: #666; text-decoration: underline;">Retour au site principal</a>
+      </div>
+    </main>
   </div>
 
 <?php else: ?>
