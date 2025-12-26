@@ -97,6 +97,7 @@ Lost : désactiver le bunker sur ma gueule de con
   <meta charset="UTF-8">
   <title>Mariage Tiphaine & Adrien – 24 octobre 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
