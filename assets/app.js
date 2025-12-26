@@ -10,27 +10,39 @@ setRealVh();
 // MOT DE PASSE (avant login)
 const pwdBtn = document.getElementById('pwd-btn');
 const pwdInput = document.getElementById('pwd-input');
+const pwdPrenom = document.getElementById('pwd-prenom');
+const pwdNom = document.getElementById('pwd-nom');
 
 // Soumission avec la touche Entrée
 if (pwdInput) {
-pwdInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    pwdBtn.click(); // on déclenche exactement le même comportement que le bouton
-  }
-});
+  pwdInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      pwdBtn.click();
+    }
+  });
 }
 
 if (pwdBtn) {
   pwdBtn.addEventListener('click', async () => {
-    const pwd = document.getElementById('pwd-input').value.trim();
+    const pwd = pwdInput.value.trim();
+    const prenom = pwdPrenom ? pwdPrenom.value.trim() : '';
+    const nom = pwdNom ? pwdNom.value.trim() : '';
+    
+    // Vérification des champs
+    const err = document.getElementById('pwd-error');
+    if (!prenom || !nom) {
+      err.textContent = 'Veuillez remplir tous les champs';
+      return;
+    }
+    
     const res = await fetch('api/check_password.php', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({password: pwd})
+      body: JSON.stringify({password: pwd, prenom: prenom, nom: nom})
     });
     const data = await res.json();
-    const err = document.getElementById('pwd-error');
+    
     if (data.success) {
       // on recharge la page pour afficher la SPA
       window.location.reload();

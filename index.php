@@ -98,8 +98,18 @@ Lost : désactiver le bunker sur ma gueule de con
   <div id="password-screen">
     <div class="pwd-card">
       <h1>Mariage de Tiphaine & Adrien</h1>
-      <p>Entrez le mot de passe pour accéder au site ✨</p>
-      <input type="password" id="pwd-input" placeholder="Mot de passe">
+      <p>Entrez vos informations pour accéder au site ✨</p>
+      
+      <div class="form-row">
+        <input type="text" id="pwd-prenom" placeholder="Prénom" required>
+      </div>
+      <div class="form-row">
+        <input type="text" id="pwd-nom" placeholder="Nom" required>
+      </div>
+      <div class="form-row">
+        <input type="password" id="pwd-input" placeholder="Mot de passe" required>
+      </div>
+      
       <button id="pwd-btn">Entrer</button>
       <p id="pwd-error" class="error"></p>
     </div>
@@ -137,11 +147,11 @@ Lost : désactiver le bunker sur ma gueule de con
       <form id="secret-finder-form" style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
         <div class="form-row">
           <label>Prénom</label>
-          <input type="text" name="prenom" required>
+          <input type="text" name="prenom" value="<?php echo isset($_SESSION['user_prenom']) ? htmlspecialchars($_SESSION['user_prenom']) : ''; ?>" required>
         </div>
         <div class="form-row">
           <label>Nom</label>
-          <input type="text" name="nom" required>
+          <input type="text" name="nom" value="<?php echo isset($_SESSION['user_nom']) ? htmlspecialchars($_SESSION['user_nom']) : ''; ?>" required>
         </div>
         <button type="submit">Enregistrer mon exploit 🏆</button>
         <p id="secret-status"></p>
@@ -482,11 +492,11 @@ Lost : désactiver le bunker sur ma gueule de con
           <form id="shaduns-form">
             <div class="form-row">
               <label>Prénom</label>
-              <input type="text" name="prenom_contact" required>
+              <input type="text" name="prenom_contact" value="<?php echo isset($_SESSION['user_prenom']) ? htmlspecialchars($_SESSION['user_prenom']) : ''; ?>" required>
             </div>
             <div class="form-row">
               <label>Nom</label>
-              <input type="text" name="nom_contact" required>
+              <input type="text" name="nom_contact" value="<?php echo isset($_SESSION['user_nom']) ? htmlspecialchars($_SESSION['user_nom']) : ''; ?>" required>
             </div>
         
             <div class="form-row">
@@ -510,11 +520,11 @@ Lost : désactiver le bunker sur ma gueule de con
         <form id="rsvp-form">
           <div class="form-row">
             <label>Prénom</label>
-            <input type="text" name="prenom" required>
+            <input type="text" name="prenom" value="<?php echo isset($_SESSION['user_prenom']) ? htmlspecialchars($_SESSION['user_prenom']) : ''; ?>" required>
           </div>
           <div class="form-row">
             <label>Nom</label>
-            <input type="text" name="nom" required>
+            <input type="text" name="nom" value="<?php echo isset($_SESSION['user_nom']) ? htmlspecialchars($_SESSION['user_nom']) : ''; ?>" required>
           </div>
         
           <div class="form-row">
