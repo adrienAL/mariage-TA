@@ -5,6 +5,8 @@ require_once '../db.php';
 
 // Mot de passe principal
 $PASSWORD = "XXXXX";
+// Mot de passe sans accès Shaduns
+$PASSWORD_NO_SHADUNS = "YYYYY";
 // Mot de passe secret pour accéder au formulaire des trouveurs
 $SECRET_PASSWORD = "c&7Xo#32-v";
 
@@ -21,21 +23,35 @@ if (empty($prenom) || empty($nom)) {
 
 $isValidPassword = false;
 $passwordType = 'normal';
+$canSeeShaduns = true;
 
 if ($input === $PASSWORD) {
     $_SESSION['logged_in'] = true;
     $_SESSION['secret_access'] = false;
     $_SESSION['user_prenom'] = $prenom;
     $_SESSION['user_nom'] = $nom;
+    $_SESSION['can_see_shaduns'] = true;
     $isValidPassword = true;
     $passwordType = 'normal';
+    $canSeeShaduns = true;
+} elseif ($input === $PASSWORD_NO_SHADUNS) {
+    $_SESSION['logged_in'] = true;
+    $_SESSION['secret_access'] = false;
+    $_SESSION['user_prenom'] = $prenom;
+    $_SESSION['user_nom'] = $nom;
+    $_SESSION['can_see_shaduns'] = false;
+    $isValidPassword = true;
+    $passwordType = 'no_shaduns';
+    $canSeeShaduns = false;
 } elseif ($input === $SECRET_PASSWORD) {
     $_SESSION['logged_in'] = true;
     $_SESSION['secret_access'] = true;
     $_SESSION['user_prenom'] = $prenom;
     $_SESSION['user_nom'] = $nom;
+    $_SESSION['can_see_shaduns'] = true;
     $isValidPassword = true;
     $passwordType = 'secret';
+    $canSeeShaduns = true;
 }
 
 if ($isValidPassword) {

@@ -362,7 +362,8 @@ Lost : désactiver le bunker sur ma gueule de con
             Le gîte du domaine sera réservé pour eux et leurs +1.
           </p>
         </div>
-        
+
+        <?php if (!isset($_SESSION['can_see_shaduns']) || $_SESSION['can_see_shaduns'] === true): ?>
         <div class="lodging-group">
             <h3>Les Shaduns</h3>
             <p>
@@ -383,7 +384,8 @@ Lost : désactiver le bunker sur ma gueule de con
               Réserver ma place au dortoir
             </button>
         </div>
-        
+        <?php endif; ?>
+
         <section class="lodging-wrap">
           <h2>Logements à proximité</h2>
 
