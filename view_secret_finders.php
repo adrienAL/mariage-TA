@@ -1,15 +1,34 @@
 <?php
-session_start();
+// Sécurité : Forcer HTTPS (sauf localhost)
+require_once 'force_https.php';
+
+// Sécurité : Configuration sécurisée des sessions
+require_once 'session_config.php';
+
+// Sécurité : Headers HTTP sécurisés
+require_once 'security_headers.php';
 
 require_once 'env_loader.php';
+require_once 'admin_protection.php';
+
+// Protection IP (optionnel - activer si nécessaire)
+// AdminProtection::enforceIpWhitelist($ADMIN_ALLOWED_IPS);
 
 // Protection simple - à améliorer si besoin
 $ADMIN_PASSWORD = EnvLoader::get('ADMIN_PASSWORD');
 
 if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
     if (isset($_POST['admin_password']) && $_POST['admin_password'] === $ADMIN_PASSWORD) {
+        AdminProtection::resetFailedAttempts();
         $_SESSION['admin_logged'] = true;
     } else {
+        // Ajouter un délai si tentatives précédentes échouées
+        if (isset($_POST['admin_password'])) {
+            AdminProtection::recordFailedAttempt();
+            $failedAttempts = AdminProtection::getFailedAttempts();
+            AdminProtection::addLoginDelay($failedAttempts - 1);
+        }
+        
         ?>
         <!DOCTYPE html>
         <html>

@@ -1,5 +1,7 @@
 <?php
-session_start();
+header('Content-Type: application/json');
+require_once '../security_headers.php';
+require_once '../session_config.php';
 
 require_once '../csrf.php';
 

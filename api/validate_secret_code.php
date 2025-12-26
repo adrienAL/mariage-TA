@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+require_once '../security_headers.php';
 
 require_once '../env_loader.php';
 

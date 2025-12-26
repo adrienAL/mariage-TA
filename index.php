@@ -1,5 +1,12 @@
 <?php
-session_start();
+// Sécurité : Forcer HTTPS (sauf localhost)
+require_once 'force_https.php';
+
+// Sécurité : Configuration sécurisée des sessions
+require_once 'session_config.php';
+
+// Sécurité : Headers HTTP sécurisés
+require_once 'security_headers.php';
 
 // Gestion de la déconnexion
 if (isset($_GET['logout'])) {

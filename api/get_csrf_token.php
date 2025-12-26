@@ -4,7 +4,9 @@
  * Utilisée par JavaScript pour récupérer les tokens
  */
 
-session_start();
+require_once '../security_headers.php';
+require_once '../session_config.php';
+
 header('Content-Type: application/json');
 
 require_once '../csrf.php';
