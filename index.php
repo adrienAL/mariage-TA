@@ -98,7 +98,7 @@ Lost : désactiver le bunker sur ma gueule de con
   <title>Mariage Tiphaine & Adrien – 24 octobre 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="assets/logo.png">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=<?php echo filemtime('assets/style.css'); ?>">
 </head>
 <body>
 <?php if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true): ?>
@@ -315,7 +315,6 @@ Lost : désactiver le bunker sur ma gueule de con
                 <strong>16h00</strong>.
               </p>
               <p>
-                Elle sera animée par <strong>Marceau</strong>, notre maître de cérémonie.
                 Nous vous invitons à arriver quelques minutes en avance pour vous installer tranquillement.
               </p>
             </li>
@@ -618,8 +617,8 @@ Lost : désactiver le bunker sur ma gueule de con
   <img id="easter-egg-img" src="" alt="Easter Egg">
 </div>
 
-<script src="assets/csrf-helper.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/csrf-helper.js?v=<?php echo filemtime('assets/csrf-helper.js'); ?>"></script>
+<script src="assets/app.js?v=<?php echo filemtime('assets/app.js'); ?>"></script>
 
 <!-- Bouton de déconnexion discret -->
 <a href="?logout=1" id="logout-btn" class="logout-discrete" title="Se déconnecter">⎋</a>
