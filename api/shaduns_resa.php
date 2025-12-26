@@ -1,6 +1,14 @@
 <?php
 header('Content-Type: application/json');
 require_once '../db.php';
+require_once '../csrf.php';
+
+// Valider le token CSRF
+if (!CSRF::validateRequest('shaduns')) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Token de sécurité invalide']);
+    exit;
+}
 
 $prenom_contact = $_POST['prenom_contact'] ?? '';
 $nom_contact    = $_POST['nom_contact'] ?? '';

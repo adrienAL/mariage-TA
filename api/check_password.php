@@ -2,13 +2,28 @@
 session_start();
 
 require_once '../db.php';
+require_once '../env_loader.php';
+require_once '../rate_limiter.php';
 
-// Mot de passe principal
-$PASSWORD = "XXXXX";
-// Mot de passe sans accès Shaduns
-$PASSWORD_NO_SHADUNS = "YYYYY";
-// Mot de passe secret pour accéder au formulaire des trouveurs
-$SECRET_PASSWORD = "c&7Xo#32-v";
+// Initialiser le rate limiter
+$rateLimiter = new RateLimiter($pdo);
+
+// Vérifier le rate limit (5 tentatives par minute, blocage de 5 minutes)
+if (!$rateLimiter->checkLimit('login', 5, 60, 300)) {
+    $remaining = $rateLimiter->getRemainingLockTime('login');
+    $minutes = ceil($remaining / 60);
+    echo json_encode([
+        'success' => false, 
+        'message' => "Trop de tentatives. Réessayez dans {$minutes} minute(s)."
+    ]);
+    http_response_code(429); // Too Many Requests
+    exit;
+}
+
+// Mots de passe depuis les variables d'environnement
+$PASSWORD = EnvLoader::get('PASSWORD_MAIN');
+$PASSWORD_NO_SHADUNS = EnvLoader::get('PASSWORD_NO_SHADUNS');
+$SECRET_PASSWORD = EnvLoader::get('PASSWORD_SECRET');
 
 $data = json_decode(file_get_contents("php://input"), true);
 $input = $data['password'] ?? '';
@@ -55,6 +70,9 @@ if ($input === $PASSWORD) {
 }
 
 if ($isValidPassword) {
+    // Réinitialiser le compteur de tentatives
+    $rateLimiter->reset('login');
+    
     // Enregistrer le log de connexion
     try {
         $ip = $_SERVER['REMOTE_ADDR'] ?? null;
@@ -69,6 +87,9 @@ if ($isValidPassword) {
     
     echo json_encode(['success' => true, 'secret' => ($passwordType === 'secret')]);
 } else {
+    // Enregistrer la tentative échouée
+    $rateLimiter->recordAttempt('login');
+    
     echo json_encode(['success' => false, 'message' => 'Mot de passe incorrect']);
 }
 

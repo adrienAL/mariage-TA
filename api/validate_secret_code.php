@@ -1,9 +1,11 @@
 <?php
 header('Content-Type: application/json');
 
-// Code secret et message (stockés côté serveur uniquement)
-$SECRET_CODE = '4815162342';
-$SECRET_MESSAGE = 'c&7Xo#32-v';
+require_once '../env_loader.php';
+
+// Code secret et message depuis les variables d'environnement
+$SECRET_CODE = EnvLoader::get('SECRET_CODE');
+$SECRET_MESSAGE = EnvLoader::get('PASSWORD_SECRET');
 
 // Récupérer le hash envoyé par le client
 $data = json_decode(file_get_contents("php://input"), true);

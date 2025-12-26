@@ -605,6 +605,7 @@ Lost : désactiver le bunker sur ma gueule de con
   <img id="easter-egg-img" src="" alt="Easter Egg">
 </div>
 
+<script src="assets/csrf-helper.js"></script>
 <script src="assets/app.js"></script>
 
 <!-- Bouton de déconnexion discret -->

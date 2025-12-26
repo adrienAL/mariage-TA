@@ -1,0 +1,29 @@
+# Fichiers de configuration sensibles
+.env
+.env.local
+.env.*.local
+
+# Logs et caches
+*.log
+*.cache
+error_log
+
+# Fichiers systèmes
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Fichiers temporaires PHP
+.phpunit.result.cache

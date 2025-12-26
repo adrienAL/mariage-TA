@@ -1,10 +1,19 @@
 <?php
 session_start();
 
+require_once '../csrf.php';
+
 // Vérifier que l'utilisateur a accès à la zone secrète
 if (!isset($_SESSION['secret_access']) || $_SESSION['secret_access'] !== true) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'Accès non autorisé']);
+    exit;
+}
+
+// Valider le token CSRF
+if (!CSRF::validateRequest('secret')) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Token de sécurité invalide']);
     exit;
 }
 

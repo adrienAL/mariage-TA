@@ -533,6 +533,12 @@ if (rsvpForm) {
     submitBtn.disabled = true;
   
     const formData = new FormData(rsvpForm);
+    
+    // Ajouter le token CSRF
+    const csrfToken = await getCSRFToken('rsvp');
+    if (csrfToken) {
+      formData.append('csrf_token', csrfToken);
+    }
 
     try {
       const res = await fetch('api/rsvp.php', {
@@ -625,6 +631,14 @@ if (shadunsForm) {
     if (statusEl) {
       statusEl.textContent = '';
       statusEl.classList.remove('success', 'error');
+    }
+    
+    const formData = new FormData(shadunsForm);
+    
+    // Ajouter le token CSRF
+    const csrfToken = await getCSRFToken('shaduns');
+    if (csrfToken) {
+      formData.append('csrf_token', csrfToken);
     }
 
     try {
@@ -998,6 +1012,13 @@ if (secretFinderForm) {
     
     try {
       const formData = new FormData(secretFinderForm);
+      
+      // Ajouter le token CSRF
+      const csrfToken = await getCSRFToken('secret');
+      if (csrfToken) {
+        formData.append('csrf_token', csrfToken);
+      }
+      
       const res = await fetch('api/secret_finder.php', {
         method: 'POST',
         body: formData

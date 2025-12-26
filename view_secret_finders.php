@@ -1,8 +1,10 @@
 <?php
 session_start();
 
+require_once 'env_loader.php';
+
 // Protection simple - à améliorer si besoin
-$ADMIN_PASSWORD = "admin2026TA";
+$ADMIN_PASSWORD = EnvLoader::get('ADMIN_PASSWORD');
 
 if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
     if (isset($_POST['admin_password']) && $_POST['admin_password'] === $ADMIN_PASSWORD) {
