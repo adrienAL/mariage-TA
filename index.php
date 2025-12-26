@@ -269,7 +269,7 @@ Lost : désactiver le bunker sur ma gueule de con
           <div class="overlay">
             <?php if (isset($_SESSION['user_prenom']) && !empty($_SESSION['user_prenom'])): ?>
             <p class="hero-greeting">
-              Bonjour <?php echo htmlspecialchars($_SESSION['user_prenom']); ?>, nous sommes ravis de vous inviter à notre mariage
+              Bonjour <?php echo htmlspecialchars($_SESSION['user_prenom']); ?>, nous sommes ravis de t'inviter à notre mariage
             </p>
             <?php endif; ?>
             <h1 class="hero-names">

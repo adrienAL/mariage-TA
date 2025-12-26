@@ -644,7 +644,7 @@ if (shadunsForm) {
     try {
       const res = await fetch('api/shaduns_resa.php', {
         method: 'POST',
-        body: new FormData(shadunsForm)
+        body: formData
       });
       const data = await res.json();
 
