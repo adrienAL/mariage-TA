@@ -1,6 +1,115 @@
 <?php
-// Page d'accueil pour l'administration
+// Sécurité : Forcer HTTPS (sauf localhost)
+require_once 'force_https.php';
+
+// Sécurité : Configuration sécurisée des sessions
+require_once 'session_config.php';
+
+// Sécurité : Headers HTTP sécurisés
+require_once 'security_headers.php';
+
+require_once 'env_loader.php';
 require_once 'admin_protection.php';
+
+// Protection admin
+$ADMIN_PASSWORD = EnvLoader::get('ADMIN_PASSWORD');
+
+if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
+    if (isset($_POST['admin_password']) && $_POST['admin_password'] === $ADMIN_PASSWORD) {
+        AdminProtection::resetFailedAttempts();
+        $_SESSION['admin_logged'] = true;
+    } else {
+        // Ajouter un délai si tentatives précédentes échouées
+        if (isset($_POST['admin_password'])) {
+            AdminProtection::recordFailedAttempt();
+            $failedAttempts = AdminProtection::getFailedAttempts();
+            AdminProtection::addLoginDelay($failedAttempts - 1);
+        }
+        
+        ?>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Admin - Connexion</title>
+            <style>
+                body { 
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+                    padding: 2rem; 
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    min-height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .login { 
+                    max-width: 400px; 
+                    width: 100%;
+                    background: white; 
+                    padding: 2rem; 
+                    border-radius: 1rem;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                }
+                h2 { 
+                    color: #667eea; 
+                    margin-bottom: 1.5rem;
+                    text-align: center;
+                }
+                input { 
+                    width: 100%; 
+                    padding: 0.75rem; 
+                    margin: 0.5rem 0;
+                    border: 1px solid #ddd;
+                    border-radius: 0.5rem;
+                    font-size: 1rem;
+                }
+                button { 
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                    color: white; 
+                    border: none; 
+                    padding: 0.75rem 1.5rem; 
+                    cursor: pointer;
+                    width: 100%;
+                    border-radius: 0.5rem;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    margin-top: 1rem;
+                    transition: transform 0.2s;
+                }
+                button:hover {
+                    transform: translateY(-2px);
+                }
+                .error {
+                    color: #ff4444;
+                    margin-top: 1rem;
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="login">
+                <h2>🔐 Administration</h2>
+                <form method="post">
+                    <input type="password" name="admin_password" placeholder="Mot de passe admin" required>
+                    <button type="submit">Se connecter</button>
+                    <?php if (isset($_POST['admin_password'])): ?>
+                        <p class="error">Mot de passe incorrect</p>
+                    <?php endif; ?>
+                </form>
+            </div>
+        </body>
+        </html>
+        <?php
+        exit;
+    }
+}
+
+// Gérer la déconnexion
+if (isset($_GET['logout'])) {
+    unset($_SESSION['admin_logged']);
+    header('Location: admin.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
