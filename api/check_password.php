@@ -23,7 +23,7 @@ if (!$rateLimiter->checkLimit('login', 5, 60, 300)) {
 }
 
 // Mots de passe depuis les variables d'environnement
-$PASSWORD = EnvLoader::get('PASSWORD_MAIN');
+$PASSWORD = EnvLoader::get('PASSWORD_SHADUNS');
 $PASSWORD_NO_SHADUNS = EnvLoader::get('PASSWORD_NO_SHADUNS');
 $SECRET_PASSWORD = EnvLoader::get('PASSWORD_SECRET');
 

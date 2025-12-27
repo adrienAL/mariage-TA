@@ -65,7 +65,7 @@ $DB_PASS = 'oBKs4@e43CNE?b?X';  // ❌ Exposé
 
 ### Après :
 ```php
-$PASSWORD = EnvLoader::get('PASSWORD_MAIN');  // ✅ Depuis .env
+$PASSWORD = EnvLoader::get('PASSWORD_SHADUNS');  // ✅ Depuis .env
 $DB_PASS = EnvLoader::get('DB_PASS');  // ✅ Sécurisé
 ```
 
