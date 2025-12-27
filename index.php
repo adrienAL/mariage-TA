@@ -180,28 +180,82 @@ Lost : désactiver le bunker sur ma gueule de con
       </form>
 
       <div class="master-sword-container">
-        <svg class="master-sword" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
-          <!-- Lame -->
-          <path d="M45,10 L55,10 L52,80 L48,80 Z" fill="#C0C0C0" stroke="#808080" stroke-width="1"/>
-          <path d="M47,80 L53,80 L52,85 L48,85 Z" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+        <svg class="master-sword" viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Définition des gradients -->
+          <defs>
+            <linearGradient id="bladeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#9CA3AF;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#E5E7EB;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#9CA3AF;stop-opacity:1" />
+            </linearGradient>
+            <radialGradient id="gemGradient">
+              <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+            </radialGradient>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#FCD34D;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+            </linearGradient>
+          </defs>
           
-          <!-- Garde -->
-          <rect x="35" y="85" width="30" height="8" fill="#4169E1" stroke="#1E3A8A" stroke-width="1" rx="2"/>
-          <circle cx="35" cy="89" r="4" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
-          <circle cx="65" cy="89" r="4" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+          <!-- Lame principale -->
+          <path d="M60,10 L65,15 L63,110 L57,110 L55,15 Z" fill="url(#bladeGradient)" stroke="#6B7280" stroke-width="0.8"/>
           
-          <!-- Poignée -->
-          <rect x="46" y="93" width="8" height="20" fill="#4169E1" stroke="#1E3A8A" stroke-width="1" rx="1"/>
-          <line x1="46" y1="98" x2="54" y2="98" stroke="#1E3A8A" stroke-width="0.5"/>
-          <line x1="46" y1="103" x2="54" y2="103" stroke="#1E3A8A" stroke-width="0.5"/>
-          <line x1="46" y1="108" x2="54" y2="108" stroke="#1E3A8A" stroke-width="0.5"/>
-          
-          <!-- Pommeau -->
-          <circle cx="50" cy="118" r="6" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
-          <path d="M47,118 L53,118 M50,115 L50,121" stroke="#DAA520" stroke-width="1.5"/>
+          <!-- Rainure centrale de la lame -->
+          <path d="M60,15 L61,15 L60.5,105 L59.5,105 Z" fill="#D1D5DB" opacity="0.6"/>
           
           <!-- Reflets sur la lame -->
-          <path d="M48,15 L49,15 L49,75 L48,75 Z" fill="white" opacity="0.3"/>
+          <path d="M56,20 L57,20 L58,100 L57,100 Z" fill="white" opacity="0.4"/>
+          <path d="M63,20 L64,20 L62,100 L61,100 Z" fill="white" opacity="0.2"/>
+          
+          <!-- Garde - Aile gauche -->
+          <path d="M20,120 Q25,115 35,115 L45,118 L45,125 L35,128 Q25,128 20,123 Z" 
+                fill="url(#goldGradient)" stroke="#D97706" stroke-width="1"/>
+          <ellipse cx="25" cy="119" rx="6" ry="4" fill="#FCD34D" opacity="0.6"/>
+          
+          <!-- Garde - Aile droite -->
+          <path d="M100,120 Q95,115 85,115 L75,118 L75,125 L85,128 Q95,128 100,123 Z" 
+                fill="url(#goldGradient)" stroke="#D97706" stroke-width="1"/>
+          <ellipse cx="95" cy="119" rx="6" ry="4" fill="#FCD34D" opacity="0.6"/>
+          
+          <!-- Centre de la garde avec pierre précieuse -->
+          <ellipse cx="60" cy="121" rx="18" ry="10" fill="url(#goldGradient)" stroke="#D97706" stroke-width="1"/>
+          
+          <!-- Pierre précieuse violette -->
+          <ellipse cx="60" cy="121" rx="12" ry="7" fill="url(#gemGradient)" stroke="#4F46E5" stroke-width="0.8"/>
+          <ellipse cx="58" cy="119" rx="5" ry="3" fill="#A78BFA" opacity="0.6"/>
+          
+          <!-- Petits ornements dorés sur les côtés de la garde -->
+          <circle cx="45" cy="121" r="3" fill="#FCD34D" stroke="#D97706" stroke-width="0.5"/>
+          <circle cx="75" cy="121" r="3" fill="#FCD34D" stroke="#D97706" stroke-width="0.5"/>
+          
+          <!-- Poignée en cuir -->
+          <rect x="54" y="135" width="12" height="60" rx="2" fill="#78350F" stroke="#451A03" stroke-width="0.8"/>
+          
+          <!-- Enroulements de la poignée -->
+          <line x1="54" y1="142" x2="66" y2="142" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="149" x2="66" y2="149" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="156" x2="66" y2="156" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="163" x2="66" y2="163" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="170" x2="66" y2="170" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="177" x2="66" y2="177" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="184" x2="66" y2="184" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          <line x1="54" y1="191" x2="66" y2="191" stroke="#92400E" stroke-width="2" opacity="0.8"/>
+          
+          <!-- Base de la poignée -->
+          <ellipse cx="60" cy="198" rx="8" ry="4" fill="url(#goldGradient)" stroke="#D97706" stroke-width="0.8"/>
+          
+          <!-- Pommeau avec Triforce -->
+          <circle cx="60" cy="210" r="14" fill="url(#goldGradient)" stroke="#D97706" stroke-width="1.2"/>
+          
+          <!-- Symbole Triforce (3 triangles) -->
+          <path d="M60,202 L56,208 L64,208 Z" fill="#FCD34D" stroke="#D97706" stroke-width="0.5"/>
+          <path d="M56,210 L52,216 L60,216 Z" fill="#FCD34D" stroke="#D97706" stroke-width="0.5"/>
+          <path d="M64,210 L60,216 L68,216 Z" fill="#FCD34D" stroke="#D97706" stroke-width="0.5"/>
+          
+          <!-- Bordure du pommeau -->
+          <circle cx="60" cy="210" r="14" fill="none" stroke="#FCD34D" stroke-width="0.8" opacity="0.5"/>
         </svg>
       </div>
 
