@@ -49,7 +49,7 @@ if ($input === $PASSWORD) {
     $_SESSION['user_nom'] = $nom;
     $_SESSION['can_see_shaduns'] = true;
     $isValidPassword = true;
-    $passwordType = 'normal';
+    $passwordType = 'shaduns';
     $canSeeShaduns = true;
 } elseif ($input === $PASSWORD_NO_SHADUNS) {
     $_SESSION['logged_in'] = true;
@@ -58,7 +58,7 @@ if ($input === $PASSWORD) {
     $_SESSION['user_nom'] = $nom;
     $_SESSION['can_see_shaduns'] = false;
     $isValidPassword = true;
-    $passwordType = 'no_shaduns';
+    $passwordType = 'normal';
     $canSeeShaduns = false;
 } elseif ($input === $SECRET_PASSWORD) {
     $_SESSION['logged_in'] = true;
