@@ -713,6 +713,70 @@ if (lightbox && lightboxImg && galleryImages.length > 0) {
 // ============================
 // EASTER EGG - Tiphaine & Adrien
 // ============================
+
+// Fonction d'animation de victoire avec confettis
+function createVictoryAnimation() {
+  const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#ff1493'];
+  const confettiCount = 100;
+  const container = document.createElement('div');
+  container.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+  `;
+  document.body.appendChild(container);
+  
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div');
+    const size = Math.random() * 10 + 5;
+    const startX = Math.random() * window.innerWidth;
+    const endX = startX + (Math.random() - 0.5) * 200;
+    const duration = Math.random() * 3 + 2;
+    const delay = Math.random() * 0.5;
+    
+    confetti.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      top: -20px;
+      left: ${startX}px;
+      opacity: 1;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+      animation: confettiFall ${duration}s ease-in ${delay}s forwards;
+    `;
+    container.appendChild(confetti);
+  }
+  
+  // Ajouter l'animation CSS dynamiquement
+  if (!document.getElementById('confetti-style')) {
+    const style = document.createElement('style');
+    style.id = 'confetti-style';
+    style.textContent = `
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(${window.innerHeight + 20}px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Supprimer le container après l'animation
+  setTimeout(() => {
+    container.remove();
+  }, 5500);
+}
+
 const easterEggTriggers = document.querySelectorAll('.easter-egg-trigger');
 const easterEggPopup = document.getElementById('easter-egg-popup');
 const easterEggImg = document.getElementById('easter-egg-img');
@@ -828,7 +892,13 @@ document.addEventListener('keydown', (e) => {
               const data = await response.json();
               
               if (data.success) {
-                showPopup(`🔓 Code secret débloqué !<br><strong>${data.message}</strong>`);
+                // Animation de victoire avec confettis
+                createVictoryAnimation();
+                
+                // Afficher le message après un court délai
+                setTimeout(() => {
+                  showPopup(`🔓 Code secret débloqué !<br><strong>${data.message}</strong>`);
+                }, 500);
               }
             } catch (err) {
               console.error('Erreur validation code secret:', err);
