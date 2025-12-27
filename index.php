@@ -146,12 +146,6 @@ Lost : désactiver le bunker sur ma gueule de con
 <?php elseif (isset($_SESSION['secret_access']) && $_SESSION['secret_access'] === true): ?>
 
   <!-- FORMULAIRE SECRET POUR CEUX QUI ONT TROUVÉ LE CODE -->
-  <style>
-    body.loading { overflow: hidden; }
-    #secret-form-container { opacity: 0; transition: opacity .6s ease; }
-    body.loaded #secret-form-container { opacity: 1; }
-  </style>
-
   <script>
     document.body.classList.add('loading');
     window.addEventListener('load', () => {
@@ -165,14 +159,14 @@ Lost : désactiver le bunker sur ma gueule de con
       <div class="brand">🔓 Zone Secrète</div>
     </header>
 
-    <main style="padding: 4rem 2rem; max-width: 600px; margin: 0 auto; min-height: 100vh;">
+    <main>
       <h1 style="text-align: center; margin-bottom: 2rem;">🎉 Félicitations !</h1>
-      <p style="text-align: center; margin-bottom: 2rem;">
+      <p style="text-align: center; margin-bottom: 2rem; color: #555; font-size: 1.1rem;">
         Vous avez trouvé le code secret ! Pour immortaliser votre exploit, 
         laissez-nous votre nom ci-dessous.
       </p>
 
-      <form id="secret-finder-form" style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <form id="secret-finder-form">
         <div class="form-row">
           <label>Prénom</label>
           <input type="text" name="prenom" value="<?php echo isset($_SESSION['user_prenom']) ? htmlspecialchars($_SESSION['user_prenom']) : ''; ?>" required>
@@ -185,8 +179,34 @@ Lost : désactiver le bunker sur ma gueule de con
         <p id="secret-status"></p>
       </form>
 
+      <div class="master-sword-container">
+        <svg class="master-sword" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lame -->
+          <path d="M45,10 L55,10 L52,80 L48,80 Z" fill="#C0C0C0" stroke="#808080" stroke-width="1"/>
+          <path d="M47,80 L53,80 L52,85 L48,85 Z" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+          
+          <!-- Garde -->
+          <rect x="35" y="85" width="30" height="8" fill="#4169E1" stroke="#1E3A8A" stroke-width="1" rx="2"/>
+          <circle cx="35" cy="89" r="4" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+          <circle cx="65" cy="89" r="4" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+          
+          <!-- Poignée -->
+          <rect x="46" y="93" width="8" height="20" fill="#4169E1" stroke="#1E3A8A" stroke-width="1" rx="1"/>
+          <line x1="46" y1="98" x2="54" y2="98" stroke="#1E3A8A" stroke-width="0.5"/>
+          <line x1="46" y1="103" x2="54" y2="103" stroke="#1E3A8A" stroke-width="0.5"/>
+          <line x1="46" y1="108" x2="54" y2="108" stroke="#1E3A8A" stroke-width="0.5"/>
+          
+          <!-- Pommeau -->
+          <circle cx="50" cy="118" r="6" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+          <path d="M47,118 L53,118 M50,115 L50,121" stroke="#DAA520" stroke-width="1.5"/>
+          
+          <!-- Reflets sur la lame -->
+          <path d="M48,15 L49,15 L49,75 L48,75 Z" fill="white" opacity="0.3"/>
+        </svg>
+      </div>
+
       <div style="text-align: center; margin-top: 2rem;">
-        <a href="?logout=1" style="color: #666; text-decoration: underline;">Retour au site principal</a>
+        <a href="?logout=1" style="color: #667eea; text-decoration: none; font-weight: 600; transition: color 0.3s;">Retour au site principal →</a>
       </div>
     </main>
   </div>
