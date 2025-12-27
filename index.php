@@ -381,6 +381,7 @@ Lost : désactiver le bunker sur ma gueule de con
       <!-- SECTION LOGEMENTS -->
       <section id="logements" class="page">
         <h2>Logements</h2>
+        <br>
         
         <div class="lodging-group" style="background: #ffe6e6; border-left: 4px solid #ff4444;">
           <p style="margin: 0;">
