@@ -80,7 +80,7 @@ $orderClause = match($sort) {
 $stmt = $pdo->query("SELECT * FROM rsvps $whereClause $orderClause");
 $rsvps = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Statistiques
+// Statistiques RSVP
 $statsStmt = $pdo->query("
     SELECT 
         COUNT(*) as total,
@@ -91,6 +91,29 @@ $statsStmt = $pdo->query("
     FROM rsvps
 ");
 $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
+
+// Statistiques Shaduns
+$shadunsStatsStmt = $pdo->query("
+    SELECT 
+        COUNT(DISTINCT CONCAT(prenom_contact, nom_contact)) as total_reservations,
+        COUNT(*) as total_personnes
+    FROM shaduns_resa_personnes
+");
+$shadunsStats = $shadunsStatsStmt->fetch(PDO::FETCH_ASSOC);
+
+// Liste des réservations Shaduns groupées par contact
+$shadunsStmt = $pdo->query("
+    SELECT 
+        prenom_contact,
+        nom_contact,
+        GROUP_CONCAT(personne_nom ORDER BY id SEPARATOR ', ') as personnes,
+        COUNT(*) as nb_personnes,
+        MIN(created_at) as created_at
+    FROM shaduns_resa_personnes
+    GROUP BY prenom_contact, nom_contact
+    ORDER BY created_at DESC
+");
+$shadunsResa = $shadunsStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -230,6 +253,19 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
             padding: 3rem;
             color: #999;
         }
+        .section-title {
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem 0;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+        .stat-card.warning {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
         @media (max-width: 768px) {
             body { padding: 1rem; }
             .container { padding: 1rem; }
@@ -242,9 +278,12 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
 <body>
     <div class="container">
         <header>
-            <h1>📋 Réponses RSVP - Mariage Tiphaine & Adrien</h1>
+            <h1>📋 Admin - Mariage Tiphaine & Adrien</h1>
             <a href="?logout=1" class="logout-btn">Déconnexion</a>
         </header>
+
+        <!-- Section RSVP -->
+        <h2 class="section-title">📨 Réponses RSVP</h2>
 
         <div class="stats">
             <div class="stat-card">
@@ -328,6 +367,53 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
         <?php else: ?>
         <div class="empty-state">
             <p>Aucune réponse pour le moment.</p>
+        </div>
+        <?php endif; ?>
+
+        <!-- Section Shaduns -->
+        <h2 class="section-title">🏠 Réservations Dortoir Shaduns</h2>
+
+        <div class="stats">
+            <div class="stat-card warning">
+                <h3>Réservations</h3>
+                <div class="value"><?php echo $shadunsStats['total_reservations']; ?></div>
+            </div>
+            <div class="stat-card warning">
+                <h3>Places réservées</h3>
+                <div class="value"><?php echo $shadunsStats['total_personnes']; ?> / 40</div>
+            </div>
+            <div class="stat-card <?php echo $shadunsStats['total_personnes'] >= 40 ? 'danger' : 'success'; ?>">
+                <h3>Places restantes</h3>
+                <div class="value"><?php echo max(0, 40 - $shadunsStats['total_personnes']); ?></div>
+            </div>
+        </div>
+
+        <?php if (count($shadunsResa) > 0): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Contact</th>
+                    <th>Nb personnes</th>
+                    <th>Liste des personnes</th>
+                    <th>Date réservation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($shadunsResa as $resa): ?>
+                <tr>
+                    <td><strong><?php echo htmlspecialchars($resa['prenom_contact'] . ' ' . $resa['nom_contact']); ?></strong></td>
+                    <td><?php echo htmlspecialchars($resa['nb_personnes']); ?></td>
+                    <td class="message-cell" title="<?php echo htmlspecialchars($resa['personnes']); ?>">
+                        <?php echo htmlspecialchars($resa['personnes']); ?>
+                    </td>
+                    <td><?php echo date('d/m/Y H:i', strtotime($resa['created_at'])); ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php else: ?>
+        <div class="empty-state">
+            <p>Aucune réservation pour le moment.</p>
         </div>
         <?php endif; ?>
     </div>
