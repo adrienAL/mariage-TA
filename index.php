@@ -318,8 +318,8 @@ Lost : désactiver le bunker sur ma gueule de con
           <p>
             Nous avons le plaisir de vous inviter à célébrer notre mariage au 
             <br /><strong>Domaine de Montfriol</strong><br /> 
-            Vous trouverez ici toutes les informations pratiques ainsi<br />
-            que le formulaire pour confirmer votre présence.<br />
+            Vous trouverez ici toutes les informations pratiques<br /> 
+            ainsi que le formulaire pour confirmer votre présence.<br />
             Nous avons hâte de partager ce moment si spécial avec vous.
           </p>
         </section>
@@ -381,6 +381,11 @@ Lost : désactiver le bunker sur ma gueule de con
       <!-- SECTION LOGEMENTS -->
       <section id="logements" class="page">
         <h2>Logements</h2>
+        
+        <p class="alert" style="background: #ffe6e6; border-left: 4px solid #ff4444; padding: 1rem; margin-bottom: 2rem; border-radius: 4px;">
+          🚐 <strong>Navette disponible</strong><br>
+          Une navette sera mise à votre disposition pour vous ramener à votre nid douillet.
+        </p>
         
         <div class="lodging-group">
           <h3>Les témoins, demoiselles d'honneur et maître de cérémonie</h3>
