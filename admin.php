@@ -1,0 +1,158 @@
+<?php
+// Page d'accueil pour l'administration
+require_once 'admin_protection.php';
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Administration - Mariage Tiphaine & Adrien</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 3rem;
+    }
+    
+    h1 {
+      color: #667eea;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+    
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .admin-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .admin-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+    
+    .admin-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .admin-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .admin-card p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    
+    .logout-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: #ff4444;
+      color: white;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    
+    .logout-btn:hover {
+      background: #cc0000;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .container {
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Administration</h1>
+    <p class="subtitle">Mariage Tiphaine & Adrien - 24 octobre 2026</p>
+    
+    <div class="admin-grid">
+      <a href="view_rsvp.php" class="admin-card">
+        <div class="icon">📋</div>
+        <h2>Réponses RSVP</h2>
+        <p>Consulter les confirmations de présence et les réservations Shaduns</p>
+      </a>
+      
+      <a href="view_secret_finders.php" class="admin-card">
+        <div class="icon">🎯</div>
+        <h2>Trouveurs de secrets</h2>
+        <p>Liste des invités qui ont découvert le code secret</p>
+      </a>
+      
+      <a href="view_login_logs.php" class="admin-card">
+        <div class="icon">📊</div>
+        <h2>Logs de connexion</h2>
+        <p>Historique des tentatives de connexion au site</p>
+      </a>
+      
+      <a href="index.php" class="admin-card">
+        <div class="icon">🏠</div>
+        <h2>Retour au site</h2>
+        <p>Retourner sur le site principal du mariage</p>
+      </a>
+    </div>
+    
+    <a href="?logout=1" class="logout-btn">⎋ Déconnexion admin</a>
+  </div>
+</body>
+</html>
