@@ -429,7 +429,7 @@ Lost : désactiver le bunker sur ma gueule de con
               </li>
             </ul>
             <p><strong>Réservation :</strong> contacter Alban</p>
-            <p><strong>Contact :</strong> <a href="tel:+33 xxxx">xx xx xx xx xx</a></p>
+            <p><strong>Contact :</strong> <a href="tel:+33757540078">07 57 54 00 78</a></p>
 
             <div class="lodging-actions">
               <a class="btn-reserver" href="https://www.lamuzetière.fr" target="_blank" rel="noopener">
@@ -450,7 +450,7 @@ Lost : désactiver le bunker sur ma gueule de con
             </ul>
             <p><strong>Tarif mariage :</strong> 35 € / personne / nuit (210 € la nuit pour 6 personnes)</p>
             <p><strong>Réservation :</strong> contacter William Chermette</p>
-            <p><strong>Contact :</strong> <a href="tel:+33 xxxx">xx xx xx xx xx</a></p>
+            <p><strong>Contact :</strong> <a href="tel:+33664102592">06 64 10 25 92</a></p>
 
           </div>
 
