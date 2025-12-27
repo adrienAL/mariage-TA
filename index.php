@@ -382,10 +382,12 @@ Lost : désactiver le bunker sur ma gueule de con
       <section id="logements" class="page">
         <h2>Logements</h2>
         
-        <p class="alert" style="background: #ffe6e6; border-left: 4px solid #ff4444; padding: 1rem; margin-bottom: 2rem; border-radius: 4px;">
-          🚐 <strong>Navette disponible</strong><br>
-          Une navette sera mise à votre disposition pour vous ramener à votre nid douillet.
-        </p>
+        <div class="lodging-group" style="background: #ffe6e6; border-left: 4px solid #ff4444;">
+          <p style="margin: 0;">
+            🚐 <strong>Navette disponible</strong><br>
+            Une navette sera mise à votre disposition pour vous ramener à votre nid douillet.
+          </p>
+        </div>
         
         <div class="lodging-group">
           <h3>Les témoins, demoiselles d'honneur et maître de cérémonie</h3>
