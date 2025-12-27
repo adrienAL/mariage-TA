@@ -318,7 +318,8 @@ Lost : désactiver le bunker sur ma gueule de con
           <p>
             Nous avons le plaisir de vous inviter à célébrer notre mariage au 
             <br /><strong>Domaine de Montfriol</strong><br /> 
-            Vous trouverez ici toutes les informations pratiques ainsi que le formulaire pour confirmer votre présence.  
+            Vous trouverez ici toutes les informations pratiques ainsi<br />
+            que le formulaire pour confirmer votre présence.<br />
             Nous avons hâte de partager ce moment si spécial avec vous.
           </p>
         </section>
