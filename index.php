@@ -308,27 +308,20 @@ Lost : désactiver le bunker sur ma gueule de con
           <h2>Le déroulé de la journée</h2>
           <ul class="timeline">
             <li>
-              <h3>Rendez-vous pour la cérémonie laïque</h3>
+              <h3>Programme de la journée</h3>
               <p>
-                La cérémonie laïque se déroulera au
-                <strong>Domaine de Montfriol</strong> à 
-                <strong>16h00</strong>.
+                La journée débutera à <strong>16h00</strong> avec notre <strong>cérémonie laïque</strong> au 
+                <strong>Domaine de Montfriol</strong>. Nous vous invitons à arriver quelques minutes en avance 
+                pour vous installer tranquillement.
               </p>
               <p>
-                Nous vous invitons à arriver quelques minutes en avance pour vous installer tranquillement.
+                Après la cérémonie, nous partagerons un <strong>vin d'honneur</strong> convivial dans la cours du domaine, 
+                suivi d'un <strong>dîner</strong> dans la salle de réception. 
+                </p>
+                <p>
+                Le lendemain se poursuivra avec 
+                <strong>galettes saucisses et jeux</strong> pour finir en douceur.
               </p>
-            </li>
-            <li>
-              <h3>Vin d'honneur</h3>
-              <p>Au domaine de Montfriol</p>
-            </li>
-            <li>
-              <h3>Dîner</h3>
-              <p>Dans la salle de réception</p>
-            </li>
-            <li>
-              <h3>Galette saucisses & jeux</h3>
-              <p>Pour finir la soirée en douceur 🌙</p>
             </li>
           </ul>
 
@@ -520,7 +513,7 @@ Lost : désactiver le bunker sur ma gueule de con
         
             <div id="shaduns-extra-guests"></div>
         
-            <button type="submit">Envoyer ma réservation</button>
+            <button type="submit">Envoyer ma réponse</button>
             <p id="shaduns-status"></p>
           </form>
         </section>
@@ -545,7 +538,7 @@ Lost : désactiver le bunker sur ma gueule de con
             <label>Présence</label>
             <select name="presence" id="rsvp-presence" required>
               <option value="oui">Oui, je serai là 🎉</option>
-              <option value="non">Non, désolé</option>
+              <option value="non">Non, j'ai mieux à faire (obligé de répondre ça si je ne viens pas)</option>
             </select>
           </div>
         
@@ -553,23 +546,23 @@ Lost : désactiver le bunker sur ma gueule de con
           <div id="rsvp-extra-fields">
             <div class="form-row">
               <label>Nombre de personnes</label>
-              <input type="number" name="nb_personnes" min="1" value="1">
+              <input type="number" name="nb_personnes" min="1" max="5" value="1">
             </div>
         
             <!-- Champs prénoms supplémentaires -->
             <div id="extra-guests"></div>
         
             <div class="form-row">
-              <label>Présent au brunch ?</label>
+              <label>Présent pour les galettes saucisses ?</label>
               <select name="brunch">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
+                <option value="oui">Ho oui</option>
+                <option value="non">Ho non je peux pas j'ai poney !</option>
               </select>
             </div>
         
             <div class="form-row">
-              <label>Message / régime particulier</label>
-              <textarea name="message" rows="4" placeholder="Sans gluten, végétarien, allergies..."></textarea>
+              <label>Petit message de ce que tu veux ...</label>
+              <textarea name="message" rows="4" placeholder="Des mots doux ou un regime sans gluten, végétarien, allergies..."></textarea>
             </div>
           </div>
         
