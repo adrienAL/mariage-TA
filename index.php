@@ -428,6 +428,8 @@ Lost : désactiver le bunker sur ma gueule de con
                 </ul>
               </li>
             </ul>
+            <p><strong>Réservation :</strong> contacter Alban</p>
+            <p><strong>Contact :</strong> <a href="tel:+33 xxxx">xx xx xx xx xx</a></p>
 
             <div class="lodging-actions">
               <a class="btn-reserver" href="https://www.lamuzetière.fr" target="_blank" rel="noopener">
@@ -447,7 +449,8 @@ Lost : désactiver le bunker sur ma gueule de con
               <li>1 canapé convertible dans le salon</li>
             </ul>
             <p><strong>Tarif mariage :</strong> 35 € / personne / nuit (210 € la nuit pour 6 personnes)</p>
-            <p><strong>Réservation :</strong> contacter directement le propriétaire</p>
+            <p><strong>Réservation :</strong> contacter William Chermette</p>
+            <p><strong>Contact :</strong> <a href="tel:+33 xxxx">xx xx xx xx xx</a></p>
 
           </div>
 
@@ -472,14 +475,14 @@ Lost : désactiver le bunker sur ma gueule de con
               <li>2 chambres avec lit simple (90)</li>
             </ul>
             <p><strong>Équipements :</strong> petit coin pour déjeuner</p>
-            <p><strong>Réservation :</strong> par téléphone</p>
+            <p><strong>Réservation :</strong> contacter Sandrine Chassignol</p>
             <p><strong>Contact :</strong> <a href="tel:+33783981929">07 83 98 19 29</a></p>
           </div>
 
           <div class="lodging-group">
             <h3>Domaine Dumas Annie – Ternand</h3>
             <p><strong>Type :</strong> chambres d’hôtes</p>
-            <p><strong>Réservation :</strong> les invités doivent appeler directement</p>
+            <p><strong>Réservation :</strong> contacter Annie Dumas</p>
             <p><strong>Contact :</strong> <a href="tel:+33683326921">06 83 32 69 21</a></p>
           </div>
 
