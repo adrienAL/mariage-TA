@@ -102,6 +102,13 @@ Lost : désactiver le bunker sur ma gueule de con
 </head>
 <body>
 <?php if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true): ?>
+  <?php
+    // Récupération des paramètres de requête
+    $queryPrenom = isset($_GET['prenom']) ? htmlspecialchars($_GET['prenom']) : '';
+    $queryNom = isset($_GET['nom']) ? htmlspecialchars($_GET['nom']) : '';
+    $queryPassword = isset($_GET['password']) ? htmlspecialchars($_GET['password']) : '';
+    $autoLogin = !empty($queryPrenom) && !empty($queryNom) && !empty($queryPassword);
+  ?>
   <!-- ÉCRAN MOT DE PASSE -->
   <div id="password-screen">
     <div class="pwd-card">
@@ -109,19 +116,32 @@ Lost : désactiver le bunker sur ma gueule de con
       <p>Entrez vos informations pour accéder au site ✨</p>
       
       <div class="form-row">
-        <input type="text" id="pwd-prenom" placeholder="Prénom" required>
+        <input type="text" id="pwd-prenom" placeholder="Prénom" value="<?php echo $queryPrenom; ?>" required>
       </div>
       <div class="form-row">
-        <input type="text" id="pwd-nom" placeholder="Nom" required>
+        <input type="text" id="pwd-nom" placeholder="Nom" value="<?php echo $queryNom; ?>" required>
       </div>
       <div class="form-row">
-        <input type="password" id="pwd-input" placeholder="Mot de passe" required>
+        <input type="password" id="pwd-input" placeholder="Mot de passe" value="<?php echo $queryPassword; ?>" required>
       </div>
       
       <button id="pwd-btn">Entrer</button>
       <p id="pwd-error" class="error"></p>
     </div>
   </div>
+  <?php if ($autoLogin): ?>
+  <script>
+    // Connexion automatique si les paramètres sont présents
+    window.addEventListener('DOMContentLoaded', () => {
+      const pwdBtn = document.getElementById('pwd-btn');
+      if (pwdBtn) {
+        setTimeout(() => {
+          pwdBtn.click();
+        }, 100);
+      }
+    });
+  </script>
+  <?php endif; ?>
 
 <?php elseif (isset($_SESSION['secret_access']) && $_SESSION['secret_access'] === true): ?>
 
