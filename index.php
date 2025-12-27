@@ -555,7 +555,7 @@ Lost : désactiver le bunker sur ma gueule de con
             <div class="form-row">
               <label>Présent pour les galettes saucisses ?</label>
               <select name="brunch">
-                <option value="oui">Ho oui</option>
+                <option value="oui">Ouiiiii</option>
                 <option value="non">Ho non je peux pas j'ai poney !</option>
               </select>
             </div>
