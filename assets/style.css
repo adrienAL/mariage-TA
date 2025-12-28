@@ -1102,7 +1102,7 @@ body.loaded #secret-form-container {
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: none !important;
   border: none;
   cursor: pointer;
   padding: 0.25rem;
@@ -1115,13 +1115,16 @@ body.loaded #secret-form-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: inherit;
 }
 
 .toggle-password:hover {
   opacity: 0.7;
   transform: translateY(-50%);
+  background: none !important;
 }
 
 .toggle-password svg {
   display: block;
+  pointer-events: none;
 }

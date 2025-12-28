@@ -219,16 +219,6 @@ try {
             color: #dc3545;
             text-decoration: none;
         }
-        .export-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
     </style>
 </head>
 <body>
@@ -263,7 +253,7 @@ try {
             </select>
             <input type="date" name="date" value="<?php echo htmlspecialchars($filterDate); ?>">
             <button type="submit">Filtrer</button>
-            <a href="view_login_logs.php" class="export-btn">Réinitialiser</a>
+            <a href="view_login_logs.php" style="background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block;">Réinitialiser</a>
         </form>
         
         <?php if (empty($logs)): ?>
