@@ -6,6 +6,22 @@ window.addEventListener('resize', setRealVh);
 window.addEventListener('orientationchange', setRealVh);
 setRealVh();
 
+// ===================================
+// PASSWORD VISIBILITY TOGGLE
+// ===================================
+function togglePasswordVisibility(inputId) {
+  const input = document.getElementById(inputId);
+  const wrapper = input.closest('.password-wrapper');
+  const btn = wrapper.querySelector('.toggle-password');
+  
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁️';
+  }
+}
 
 // MOT DE PASSE (avant login)
 const pwdBtn = document.getElementById('pwd-btn');

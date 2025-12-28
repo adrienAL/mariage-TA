@@ -33,21 +33,26 @@ if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
         <head>
             <meta charset="UTF-8">
             <title>Admin - RSVP</title>
+            <link rel="stylesheet" href="assets/style.css">
             <style>
                 body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
                 .login { max-width: 400px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; }
                 input { width: 100%; padding: 0.5rem; margin: 0.5rem 0; }
-                button { background: #007bff; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
+                button[type="submit"] { background: #007bff; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; width: 100%; }
             </style>
         </head>
         <body>
             <div class="login">
                 <h1>Connexion Admin</h1>
                 <form method="POST">
-                    <input type="password" name="admin_password" placeholder="Mot de passe admin">
+                    <div class="password-wrapper">
+                        <input type="password" id="admin-pwd-rsvp" name="admin_password" placeholder="Mot de passe admin">
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('admin-pwd-rsvp')">👁️</button>
+                    </div>
                     <button type="submit">Se connecter</button>
                 </form>
             </div>
+            <script src="assets/app.js"></script>
         </body>
         </html>
         <?php
@@ -416,6 +421,11 @@ $shadunsResa = $shadunsStmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Aucune réservation pour le moment.</p>
         </div>
         <?php endif; ?>
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center;">
+        <a href="admin.php" style="margin-right: 1rem; color: #667eea; text-decoration: none; font-weight: 600;">← Retour à l'admin</a>
+        <a href="?logout=1" style="color: #dc3545; text-decoration: none; font-weight: 600;">Se déconnecter</a>
     </div>
 
     <script>

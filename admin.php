@@ -32,6 +32,7 @@ if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
         <head>
             <meta charset="UTF-8">
             <title>Admin - Connexion</title>
+            <link rel="stylesheet" href="assets/style.css">
             <style>
                 body { 
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
@@ -63,7 +64,7 @@ if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
                     border-radius: 0.5rem;
                     font-size: 1rem;
                 }
-                button { 
+                button[type="submit"] { 
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                     color: white; 
                     border: none; 
@@ -76,7 +77,7 @@ if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
                     margin-top: 1rem;
                     transition: transform 0.2s;
                 }
-                button:hover {
+                button[type="submit"]:hover {
                     transform: translateY(-2px);
                 }
                 .error {
@@ -90,13 +91,17 @@ if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
             <div class="login">
                 <h2>🔐 Administration</h2>
                 <form method="post">
-                    <input type="password" name="admin_password" placeholder="Mot de passe admin" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="admin-password-input" name="admin_password" placeholder="Mot de passe admin" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('admin-password-input')">👁️</button>
+                    </div>
                     <button type="submit">Se connecter</button>
                     <?php if (isset($_POST['admin_password'])): ?>
                         <p class="error">Mot de passe incorrect</p>
                     <?php endif; ?>
                 </form>
             </div>
+            <script src="assets/app.js"></script>
         </body>
         </html>
         <?php
