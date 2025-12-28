@@ -63,6 +63,11 @@ body {
   border-radius: .4rem;
   cursor: pointer;
 }
+.pwd-card button.toggle-password {
+  background: none !important;
+  color: #333 !important;
+  padding: 0.25rem;
+}
 .error {
   color: #b3261e;
 }
