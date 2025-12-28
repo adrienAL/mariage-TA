@@ -1115,7 +1115,7 @@ body.loaded #secret-form-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: inherit;
+  color: #333;
 }
 
 .toggle-password:hover {
