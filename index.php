@@ -123,7 +123,9 @@ Lost : désactiver le bunker sur ma gueule de con
       </div>
       <div class="form-row password-wrapper">
         <input type="password" id="pwd-input" placeholder="Mot de passe" value="<?php echo $queryPassword; ?>" required>
-        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('pwd-input')">👁️</button>
+        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('pwd-input')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </button>
       </div>
       
       <button id="pwd-btn">Entrer</button>

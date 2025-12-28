@@ -93,7 +93,9 @@ if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
                 <form method="post">
                     <div class="password-wrapper">
                         <input type="password" id="admin-password-input" name="admin_password" placeholder="Mot de passe admin" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('admin-password-input')">👁️</button>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('admin-password-input')">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
                     </div>
                     <button type="submit">Se connecter</button>
                     <?php if (isset($_POST['admin_password'])): ?>
